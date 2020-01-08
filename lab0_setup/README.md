@@ -9,12 +9,15 @@
 ## Modify this section
 
 - How many hours did it take you to complete this lab?
+	> We all started at 8, right? I left at about 9:30, so... 2 and a half to get a red square working? Dang.
 - Did you collaborate with any other students/TAs/Professors?
+	> Yes, I asked for a ton of help from you. You were very heplful, thank you.
 - Did you use any external resources? (Cite them below)
-  - tbd
-  - tbd
+	> I did not, besides the lab and assignment files you gave us.
 - (Optional) What was your favorite part of the lab?
+	> I really enjoyed getting it working, but since it was all pretty much just setup, I don't think this *particular* lab really has a best part.
 - (Optional) How would you improve the lab?
+	> Perhaps a bit more direction in the Readme, so that you weren't yanked all over the place for 2.5 hours? Just to make it easier on you, of course.
 
 ## Logistics
 
