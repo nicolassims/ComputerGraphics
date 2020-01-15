@@ -108,3 +108,6 @@ Lab5_Part1/build
 Lab5_Part2/build
 Lab6_ColorAndTransforms/build
 lab0_setup/build
+*.exe
+.vs
+Lab1_C_Plus_Plus_SoftwareRasterizerPart1/main.obj
