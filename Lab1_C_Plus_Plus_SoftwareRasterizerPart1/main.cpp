@@ -89,7 +89,7 @@ bool PointInTriangle(Vec2 pt, Vec2 v1, Vec2 v2, Vec2 v3) {
 
 // Draw a triangle
 void triangle(Vec2 v0, Vec2 v1, Vec2 v2, TGA &image, ColorRGB c){
-    if(glFillMode==LINE){
+    if (glFillMode==LINE){
         drawLine(v0,v1,image,c);
         drawLine(v1,v2,image,c);
         drawLine(v2,v0,image,c);
@@ -98,6 +98,7 @@ void triangle(Vec2 v0, Vec2 v1, Vec2 v2, TGA &image, ColorRGB c){
 		int maxx = std::max(v0.x, std::max(v1.x, v2.x));
 		int miny = std::min(v0.y, std::min(v1.y, v2.y));
 		int maxy = std::max(v0.y, std::max(v1.y, v2.y));
+
 		int counter = 0;
 		for (int i = minx; i < maxx; i++) {
 			bool columnstarted = false;
@@ -130,9 +131,6 @@ void triangle(Vec2 v0, Vec2 v1, Vec2 v2, TGA &image, ColorRGB c){
 				}
 			}
 		}
-
-		//FIX THIS
-		std::cout << std::to_string(minx) << "," << std::to_string(maxx) << "," << std::to_string(miny) << "," << std::to_string(maxy) << ",";
 	}
 }
 
@@ -175,14 +173,17 @@ int main(){
 	drawLine(line[0], line[1], canvas, red);
 
 	// Data for our triangle
-	Vec2 tri[3] = { Vec2(50,190),Vec2(190,100),Vec2(100,50) };
+	Vec2 tri[3] = { Vec2(0,320), Vec2(320,320), Vec2(160,0) };
+	Vec2 tri1[3] = { Vec2(160,320), Vec2(0,160), Vec2(320,160) };
+	Vec2 tri2[3] = { Vec2(11,213), Vec2(213,312), Vec2(312,11) };
 
-	//Draws the outline of the triangle. //FIX THIS
 	glFillMode = FILL;
 
 	// Draw a triangle
 	triangle(tri[0], tri[1], tri[2], canvas, red);
-        
+	triangle(tri2[0], tri2[1], tri2[2], canvas, green);
+	triangle(tri1[0], tri1[1], tri1[2], canvas, blue);
+
 		// Output the final image
 	canvas.outputTGAImage("graphics_lab2.ppm");
 
