@@ -50,3 +50,6 @@ Lab3_Starfield/cmake_install.cmake
 Lab3_Starfield/ALL_BUILD.vcxproj.filters
 Lab3_Starfield/ALL_BUILD.vcxproj
 lab0_setup/build
+*.exe
+.vs
+Lab1_C_Plus_Plus_SoftwareRasterizerPart1/main.obj
