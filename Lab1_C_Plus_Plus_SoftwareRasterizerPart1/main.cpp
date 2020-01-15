@@ -23,6 +23,7 @@
 
 // C++ Standard Libraries
 #include <iostream>
+#include <algorithm>
 
 // User libraries
 #include "GL.h"
@@ -32,7 +33,6 @@
 
 // Create a canvas to draw on.
 TGA canvas(WINDOW_WIDTH,WINDOW_HEIGHT);
-
 
 // Implementation of Bresenham's Line Algorithm
 // The input to this algorithm is two points and a color
@@ -61,17 +61,66 @@ void drawLine(Vec2 v0, Vec2 v1, TGA& image, ColorRGB c){
     }
 }
 
+void swap(Vec2 &v1, Vec2 &v0) {
+	Vec2 holder = v1;
+	v1 = v0;
+	v0 = holder;
+}
+
+float sign(Vec2 p1, Vec2 p2, Vec2 p3) {
+	return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+}
+
+bool PointInTriangle(Vec2 pt, Vec2 v1, Vec2 v2, Vec2 v3) {
+	float d1, d2, d3;
+	bool has_neg, has_pos;
+
+	d1 = sign(pt, v1, v2);
+	d2 = sign(pt, v2, v3);
+	d3 = sign(pt, v3, v1);
+
+	has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+	has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+
+	return !(has_neg && has_pos);
+}
+
 // Draw a triangle
-void triangle(Vec2 v0, Vec2 v1, Vec2 v2,TGA& image, ColorRGB c){
+void triangle(Vec2 v0, Vec2 v1, Vec2 v2, TGA &image, ColorRGB c){
     if(glFillMode==LINE){
         drawLine(v0,v1,image,c);
         drawLine(v1,v2,image,c);
         drawLine(v2,v0,image,c);
-    }
+	} else if (glFillMode == FILL) {
+		int minx = std::min(v0.x, std::min(v1.x, v2.x));
+		int maxx = std::max(v0.x, std::max(v1.x, v2.x));
+		int miny = std::min(v0.y, std::min(v1.y, v2.y));
+		int maxy = std::max(v0.y, std::max(v1.y, v2.y));
+
+		//FIX THIS
+		std::cout << v0.x << "," << v0.y << "," << v1.x << "," << v1.y << "," << v2.x << "," << v2.y << std::endl;
+
+		//if (v1.y < v0.y) { swap(v1, v0); }
+		//if (v2.y < v0.y) { swap(v2, v0); }
+		//if (v2.y < v1.y) { swap(v2, v1); }
+
+		//FIX THIS
+		std::cout << v0.x << "," << v0.y << "," << v1.x << "," << v1.y << "," << v2.x << "," << v2.y << std::endl;
+
+		for (int i = minx; i < maxx; i++) {
+			for (int j = miny; j < maxy; j++) {
+				if (PointInTriangle(Vec2(i,j), v0, v1, v2)) {
+					canvas.setPixelColor(i, j, c);
+				}
+			}
+		}
+
+		//FIX THIS
+		std::cout << std::to_string(minx) << "," << std::to_string(maxx) << "," << std::to_string(miny) << "," << std::to_string(maxy) << ",";
+	}
+
     // TODO: Draw a filled triangle
 }
-
-
 
 // Main
 int main(){
@@ -79,25 +128,27 @@ int main(){
     // A sample of color(s) to play with
     ColorRGB red;
     red.r = 255; red.g = 0; red.b = 0;
-        
-    
-    // Points for our Line
-    Vec2 line[2] = {Vec2(0,0), Vec2(100,100)};
 
-    // Set the fill mode
-    glPolygonMode(FILL);
+	// Points for our Line
+	Vec2 line[2] = { Vec2(0,0), Vec2(100,100) };
 
-    // Draw a line
-    drawLine(line[0],line[1],canvas,red);
+	// Set the fill mode
+	glPolygonMode(FILL);
 
-    // Data for our triangle
-    Vec2 tri[3] = {Vec2(160,60),Vec2(150,10),Vec2(75,190)};
+	// Draw a line
+	drawLine(line[0], line[1], canvas, red);
 
-    // Draw a triangle
-    triangle(tri[0],tri[1],tri[2],canvas,red);
+	// Data for our triangle
+	Vec2 tri[3] = { Vec2(50,190),Vec2(190,100),Vec2(100,50) };
 
-    // Output the final image
-    canvas.outputTGAImage("graphics_lab2.ppm");
+	//Draws the outline of the triangle. //FIX THIS
+	glFillMode = FILL;
+
+	// Draw a triangle
+	triangle(tri[0], tri[1], tri[2], canvas, red);
+
+		// Output the final image
+	canvas.outputTGAImage("graphics_lab2.ppm");
 
     return 0;
 }
