@@ -61,12 +61,6 @@ void drawLine(Vec2 v0, Vec2 v1, TGA& image, ColorRGB c){
     }
 }
 
-void swap(Vec2 &v1, Vec2 &v0) {
-	Vec2 holder = v1;
-	v1 = v0;
-	v0 = holder;
-}
-
 float sign(Vec2 p1, Vec2 p2, Vec2 p3) {
 	return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
 }
