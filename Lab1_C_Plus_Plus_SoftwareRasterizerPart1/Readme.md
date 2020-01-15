@@ -11,12 +11,18 @@
 ## Modify this section
 
 - How many hours did it take you to complete this lab?
+	-I worked on it nonstop since we got it at 8, so about four hours.
 - Did you collaborate with any other students/TAs/Professors?
+	- No. I wanted to. But... I didn't. Although I did ask for your help at one point.
 - Did you use any external resources? (Cite them below)
-  - tbd
-  - tbd
+	- This link was most useful, and I based my code largely on it.
+	- https://stackoverflow.com/questions/2049582/how-to-determine-if-a-point-is-in-a-2d-triangle
+	- I also spent quite a lot of time trying to implement the solution discussed below. The prior solution seemed simpler, though.
+	- https://www.gabrielgambetta.com/computer-graphics-from-scratch/filled-triangles.html
 - (Optional) What was your favorite part of the lab?
+	- I liked making the pretty pictures at the end. I briefly considered making a Triforce, but it's already midnight here, so I reconsidered.
 - (Optional) How would you improve the lab?
+	- I think this was pretty good as-is, actually. Certainly easier than last week's.
 
 ## Logistics
 
