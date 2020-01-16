@@ -82,10 +82,16 @@ void triangle(Vec2 v0, Vec2 v1, Vec2 v2, TGA &image, ColorRGB c){
 		int maxx = std::max(v0.x, std::max(v1.x, v2.x));
 		int miny = std::min(v0.y, std::min(v1.y, v2.y));
 		int maxy = std::max(v0.y, std::max(v1.y, v2.y));
+		int counter = 0;
 		for (int i = minx; i < maxx; i++) {
+			bool columnstarted = false;
 			for (int j = miny; j < maxy; j++) {
+				counter++;
 				if (PointInTriangle(Vec2(i,j), v0, v1, v2)) {
+					columnstarted = true;
 					canvas.setPixelColor(i, j, c);
+				} else if (columnstarted) {
+					break;
 				}
 			}
 		}
