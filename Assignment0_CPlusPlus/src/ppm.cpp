@@ -65,6 +65,7 @@ PPM::PPM(std::string fileName) {
 
 // Destructor clears any memory that has been allocated
 PPM::~PPM() {
+	delete[] m_PixelData;
 }
 
 // Saves a PPM Image to a new file.
@@ -77,10 +78,19 @@ void PPM::savePPM(std::string outputFileName) {
 // in the PPM. Note that no values may be less than
 // 0 in a ppm.
 void PPM::darken() {
+	for (int i = 0; i < m_width * m_height * 3; i++) {
+	}
     // TODO: Output a 'filtered' PPM image.
 }
 
 // Sets a pixel to a specific R,G,B value 
 void PPM::setPixel(int x, int y, int R, int G, int B) {
-    // TODO: Implement
+	int slot = x * 3 + y * m_width * 3;
+	m_PixelData[slot] = R;
+	m_PixelData[slot + 1] = G;
+	m_PixelData[slot + 2] = G;
+}
+
+void PPM::darkenSafely(int coordinate) {
+
 }
