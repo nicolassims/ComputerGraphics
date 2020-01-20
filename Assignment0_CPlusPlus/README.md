@@ -3,13 +3,17 @@
 *TODO*: Please edit the following information in your assignment
 
 * Name and partners name (At most 1 partner for this assignment): 
-* How many hours did it take you to complete this assignment? 
-* Did you collaborate or share ideas with any other students/TAs/Professors? 
+	>Nicolas Karayakaylar
+* How many hours did it take you to complete this assignment?
+	>Too many. 12, maybe.
+* Did you collaborate or share ideas with any other students/TAs/Professors?
+	>I did not. I wanted to! But I did not.
 * Did you use any external resources? 
-  * (tbd if any)
-  * (tbd if any)
-  * (tbd if any)
+	>I used a lot of StackOverflow.
+	>I also used a lot of GeeksForGeeks.
+	>And I used a bit of cplusplus.com.
 * (Optional) What was the most interesting part of the assignment? How would you improve this assignment?
+	>The most interesting part was probably completing it--now that I have a working, bugless, engine, the possibilities for image editing are endless.
   
 ## Description
 
