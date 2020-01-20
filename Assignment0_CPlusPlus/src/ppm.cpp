@@ -7,6 +7,8 @@
 #include <cstring>
 #include <sstream> 
 #include <array>
+#include <sstream>
+#include <algorithm>
 #include <iostream>//FIX THIS
 
 // Constructor loads a filename with the .ppm extension
@@ -73,21 +75,22 @@ PPM::PPM(std::string fileName) {
 		// but we are using getline to read in
 		// one string of text at a time, until
 		// we have nothing left to read.
-		int headerLines = 2;
+		int headerLines = 3;
+		float maxValue = 255.0;
 		std::string line;   // A string object.
 		std::vector<unsigned char> coordinates;
 		while (getline(inFile, line)) {
 			if (line.substr(0, 1) != "#") {
 				if (headerLines == 0) {
 					coordinates.push_back((unsigned char)std::stoi(line));
-				}
-				else {
+				} else {
 					headerLines--;
-					if (headerLines == 0) {
+					if (headerLines == 1) {
 						int space = line.find(" ");
 						m_width = std::stoi(line.substr(0, space));
 						m_height = std::stoi(line.substr(space, line.length()));
-						//std::cout << m_width << " " << m_height << std::endl;
+					} else if (headerLines == 0) {
+						maxValue = std::stod(line);
 					}
 				}
 			}
@@ -95,7 +98,6 @@ PPM::PPM(std::string fileName) {
 		
 		//Assign an array to the private variable pointer
 		m_PixelData = new unsigned char[m_width * m_height * 3];
-
 		//Scale the values, if necessary
 		for (int i = 0; i < coordinates.size(); i++) {
 			m_PixelData[i] = coordinates.at(i) * 255.0 / maxValue;
@@ -106,9 +108,12 @@ PPM::PPM(std::string fileName) {
 	}
 	//Close the file we're reading from
 		m_PixelData = &coordinates.front();
+		m_PixelData = new unsigned char[m_width * m_height * 3];
+		for (int i = 0; i < coordinates.size(); i++) {
+			m_PixelData[i] = coordinates.at(i) * 255.0 / maxValue;
+		}
+		coordinates.erase(coordinates.begin(), coordinates.end());
 	}
-
-	// Closes the file we are reading from
 	inFile.close();
 }
 
@@ -129,6 +134,9 @@ void PPM::savePPM(std::string outputFileName) {
 		outFile << "P3\n# CREATOR: Nicolas Karayakaylar\n" << m_width << " " << m_height << "\n255" << std::endl;
 
 		//Stream out the PPM's data
+	std::ofstream outFile(outputFileName);
+	if (outFile.is_open()) {
+		outFile << "P3\n# CREATOR: Nicolas Karayakaylar\n" << m_width << " " << m_height << "\n255" << std::endl;
 		for (int i = 0; i < m_width * m_height * 3; i++) {
 			outFile << (int)m_PixelData[i] << std::endl;
 		}
@@ -145,6 +153,7 @@ void PPM::darken() {
 		m_PixelData[i] = std::max(m_PixelData[i] - 50, 0);
 	}
     // TODO: Save a PPM image to disk
+	outFile.close();
 }
 
 // Darken subtracts 50 from each of the red, green
@@ -153,13 +162,9 @@ void PPM::darken() {
 // 0 in a ppm.
 void PPM::darken() {
 	for (int i = 0; i < m_width * m_height * 3; i++) {
-		if (m_PixelData[i] >= 50) {
-			m_PixelData[i] -= 50;
-		} else {
-			m_PixelData[i] = 0;
-		}
+		unsigned char darkDarkerYetDarker = std::max(m_PixelData[i] - 50, 0);
+		m_PixelData[i] = darkDarkerYetDarker;
 	}
-    // TODO: Output a 'filtered' PPM image.
 }
 
 // Sets a pixel to a specific R,G,B value 
