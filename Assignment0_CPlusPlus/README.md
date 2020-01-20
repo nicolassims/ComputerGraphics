@@ -8,7 +8,7 @@
 	>Too many. 12, maybe.
 * Did you collaborate or share ideas with any other students/TAs/Professors?
 	>I did not. I wanted to! But I did not.
-* Did you use any external resources?
+* Did you use any external resources? 
 	>I used a lot of StackOverflow.
 	>I also used a lot of GeeksForGeeks.
 	>And I used a bit of cplusplus.com.
