@@ -152,6 +152,8 @@ void PPM::darken() {
 // in the PPM. Note that no values may be less than
 // 0 in a ppm.
 void PPM::darken() {
+	for (int i = 0; i < m_width * m_height * 3; i++) {
+	}
     // TODO: Output a 'filtered' PPM image.
 }
 
@@ -161,4 +163,8 @@ void PPM::setPixel(int x, int y, int R, int G, int B) {
 	m_PixelData[slot] = R;
 	m_PixelData[slot + 1] = G;
 	m_PixelData[slot + 2] = B;
+}
+
+void PPM::darkenSafely(int coordinate) {
+
 }
