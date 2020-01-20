@@ -1,4 +1,5 @@
 // Include our custom library
+//Compile by typing "g++ ppm.cpp main.cpp -o main"
 #include "../include/PPM.h"
 
 int main(){
