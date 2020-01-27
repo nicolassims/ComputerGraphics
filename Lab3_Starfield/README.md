@@ -14,7 +14,7 @@
 - How many hours did it take you to complete this lab?
 	>4
 - Did you collaborate with any other students/TAs/Professors?
-	>Nicolas Sims and Ben Hackney worked on this.
+	>Nicolas Karayakaylar and Ben Hackney worked on this.
 - Did you use any external resources? (Cite them below)
 	>None that were not provided.
 - (Optional) What was your favorite part of the lab?
