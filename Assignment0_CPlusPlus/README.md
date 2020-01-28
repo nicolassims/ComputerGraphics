@@ -2,19 +2,19 @@
 
 *TODO*: Please edit the following information in your assignment
 
-* Name and partners name (At most 1 partner for this assignment): 
-	>Nicolas Karayakaylar
+* Name and partners name (At most 1 partner for this assignment):
+	>Nicolas Karayakaylar, Ben Hackney
 * How many hours did it take you to complete this assignment?
 	>Too many. 12, maybe.
 * Did you collaborate or share ideas with any other students/TAs/Professors?
 	>I did not. I wanted to! But I did not.
-* Did you use any external resources? 
+* Did you use any external resources?
 	>I used a lot of StackOverflow.
 	>I also used a lot of GeeksForGeeks.
 	>And I used a bit of cplusplus.com.
 * (Optional) What was the most interesting part of the assignment? How would you improve this assignment?
 	>The most interesting part was probably completing it--now that I have a working, bugless, engine, the possibilities for image editing are endless.
-  
+
 ## Description
 
 C++ is the standard programming language for programming in the computer graphics, gaming, entertainment, and other industies that require high performance. While we can learn computer graphics in any general purpose language, the long term outlook for jobs appears to remain in C++ (And besides, once you learn how to work in C++, you could work in other languages as needed. We'll also see the GLSL language which is C-based). For this exercise(and all that follow), you will be using modern C++. This means C++11 and beyond (C++11 is the standard of the language in the year 2011. There are further versions C++14, C++17, C++20, etc).
@@ -86,9 +86,9 @@ int main(){
 
 	// Most of the time a 'signed int' is abbreviated as simply an 'int'e.
 	std::cout << "Data size of int in bytes = " << sizeof(int) << std::endl;
-	// Most of the time a 'signed char' is abbreviated as simply a 'char'.	
+	// Most of the time a 'signed char' is abbreviated as simply a 'char'.
 	std::cout << "Data size of char in bytes = " << sizeof(char) << std::endl;
-	
+
 	std::cout << "Data size of float in bytes = " << sizeof(float) << std::endl;
 	std::cout << "Data size of double in bytes = " << sizeof(double) << std::endl;
 
@@ -97,7 +97,7 @@ int main(){
 
 ```
 
-## Part 2 - Basic I/O 
+## Part 2 - Basic I/O
 
 To start, click on this URL (And then hit the C++11 tab): http://www.cplusplus.com/reference/iostream/. Take a moment to browse the Objects you have available. It may also be worth bookmarking that website as a reference.
 
@@ -140,15 +140,15 @@ int main(){
 	// is part of the standard library namespace.
 	std::cout << "Hello" << std::endl;
 	std::cout << "How old are you?" << std::endl;
-	
-	
+
+
 	// Let's use some of the primitive variable types in C++
 	// to store input.
 	int age;
-	
+
 	// Now we want to get c++ input (i.e. cin)
 	std::cin >> age;
-	
+
 	std::cout << "That is great you are " << age << std::endl;
 
 	return 0;
@@ -178,7 +178,7 @@ int main(int argc, char** argv){
     // This overwrites a previous file, or otherwise
     // creates a new file if it does not exist.
     outFile.open("temp.txt");
-    
+
     // We can work with files similar to how we
     // work with cout and cin.
     outFile << "# Some image data" << std::endl;
@@ -215,7 +215,7 @@ int main(int argc, char** argv){
     // arguments of our main function.
     // So when we run our program, we will type on the command-line:
     // ./input objects/bunny.obj"
-    
+
     // Let's enforce that there needs to be one argument.
     // argc is the "argument count" parameter.
     if (argc != 2){
@@ -227,7 +227,7 @@ int main(int argc, char** argv){
     // Think about why this is argv[1].
     // Try printing it out to see what this is.
     inFile.open(argv[1]);
-    
+
     // Lets also check to make sure the filepath is correct.
     if(inFile.is_open()){
         // Now we can do some work
@@ -240,7 +240,7 @@ int main(int argc, char** argv){
             std::cout << line << std::endl;
         }
     }
-    
+
     // Closes the file we are reading from
     inFile.close();
 
@@ -278,7 +278,7 @@ Strings are typically implemented as character arrays, such that each index is a
 </table>
 
 In our previous example, we saw the std::string data type. This is provided through the <string> library, which provides us a slightly more convenient way to work with textual data.
-	
+
 The [reference page](http://www.cplusplus.com/reference/string/string/) provides several handy methods for performing operations like searching strings, adding characters, and navigating them. Here is a very brief example. Use the reference to see more examples.
 
 ```cpp
@@ -334,7 +334,7 @@ int main(int argc, char** argv){
     // Create a vector which stores
     // 'unsigned char' data.
     std::vector<unsigned char> myData;
-    
+
     // Add data into our vector.
     for(unsigned int i = 65; i < 91; ++i){
         myData.push_back(i);
@@ -376,8 +376,8 @@ public: // Member Functions/Variables available
         // Reclaim our memory when we are done.
         delete[] pixelData;
     }
-    
-private:    // Data not visible to a user of 
+
+private:    // Data not visible to a user of
             // this object.
     unsigned char* pixelData;
 
@@ -386,7 +386,7 @@ private:    // Data not visible to a user of
 
 int main(){
 
-    // Create an instance an object with 
+    // Create an instance an object with
     // a data type of 'PPM'
     PPM myPPM(64,128);
 
@@ -406,7 +406,7 @@ With a little bit of prior programming experience and experimentation you can pi
 
 # PPM Library
 
-For this assignment you are going to implement a PPM library. PPM is a data format for structuring image data. You likely have used or saved images formatted as .jpg, .bmp, .png, or .gif, and now you will understand .ppm. 
+For this assignment you are going to implement a PPM library. PPM is a data format for structuring image data. You likely have used or saved images formatted as .jpg, .bmp, .png, or .gif, and now you will understand .ppm.
 
 ## Images
 
@@ -435,7 +435,7 @@ P3
 
 ### Structure of our library
 
-You are given a include/PPM.h file which describes the interface to your class. You will implement the functionality for that class in the src/PPM.cpp file. A corresponding main.cpp file is where the program will run. 
+You are given a include/PPM.h file which describes the interface to your class. You will implement the functionality for that class in the src/PPM.cpp file. A corresponding main.cpp file is where the program will run.
 
 ### Deliverables
 
@@ -485,4 +485,3 @@ You are given a include/PPM.h file which describes the interface to your class. 
 
 - Q: Why are some of the comments weirdly formatted in this assignment?
 	- A: They are formatted such that a tool called [doxygen](http://www.doxygen.nl/) can take these comments and create a nice html help page. For future assignments where I provide support code, this is helpful to have. It is also good programming practice to document things well!
-
