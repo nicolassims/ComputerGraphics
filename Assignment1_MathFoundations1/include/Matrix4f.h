@@ -41,7 +41,7 @@ public:
 
     // Makes the matrix an identity matrix
     void identity(){
-        // TODO:
+        n[0][0] = 1.0f;
     }
 
     // Index operator with two dimensions
