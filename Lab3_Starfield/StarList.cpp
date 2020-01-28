@@ -1,4 +1,5 @@
 #include "StarList.h"
+#include <QtCore/QtMath>
 
 StarList::StarList(unsigned int numStars, float spread, float speed) : spread_(spread), speed_(speed)
 {
