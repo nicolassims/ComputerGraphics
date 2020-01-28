@@ -6,10 +6,10 @@
 
 *TODO*: Please edit the following information in your assignment
 
-* Name and partners name (At most 1 partner for this assignment): 
-* How many hours did it take you to complete this assignment? 
-* Did you collaborate or share ideas with any other students/TAs/Professors? 
-* Did you use any external resources? 
+* Name and partners name (At most 1 partner for this assignment): Ben Hackney, Nicolas Karayakaylar
+* How many hours did it take you to complete this assignment?
+* Did you collaborate or share ideas with any other students/TAs/Professors?
+* Did you use any external resources?
   * (tbd if any)
   * (tbd if any)
   * (tbd if any)
@@ -55,7 +55,7 @@ In order make our math library easy to use, we are going to overload several ope
 struct Vector2D{
     // Member variables
     float x,y;
-	
+
     // Constructor
     Vector2D(float _x, float _y):x(_x),y(_y){
     }    
@@ -70,7 +70,7 @@ struct Vector2D{
 // additional copy.
 Vector2D operator +(const Vector2D& a, const Vector2D& b){
     Vector2D result(0,0);
-    
+
     result.x = a.x + b.x;    
     result.y = a.y + b.y;    
 
@@ -112,11 +112,11 @@ Implement the functions with 'TODO' in Vector4f.h and Matrix4f.
 
 ## Questions to ponder (Not graded)
 
-The following are a list of questions about the design of our library. 
+The following are a list of questions about the design of our library.
 
 1. In C++ what are two instances where you would use the keyword const?
 2. What does 'inline' do? Why might a programmer use it?
-3. Why do you think our library is implemented as a header only library? 
+3. Why do you think our library is implemented as a header only library?
 	- (Sometimes you will see this, and you may research [.inl files](https://stackoverflow.com/questions/1208028/significance-of-a-inl-file-in-c) in C++)
 4. Would it be helpful to implement the '<<' operator? What might you use this for?
 5. For the floating-point data type, could it be dangerous to overload '=='?
@@ -141,7 +141,7 @@ A unit test is a standalone test that checks for the correctness of a specific u
 // Create a 1-vector
 bool unitTest1(){
   Vector4f a(1.0f,1.0f,1.0f,1.0f);
-  
+
   if(a.x == 1.0f && a.y == 1.0f && a.z == 1.0f && a.w==1){
     return true;
   }
@@ -158,7 +158,7 @@ Use the CMake configuration and build process discussed in previous assignments/
 ## Deliverables
 
 - Implement Vector4f.h and Matrix4f.h
- 
+
 ### Rubric
 
 <table>
@@ -217,7 +217,7 @@ What is that, you finished Early? Did you enjoy this assignment? Here are some (
 template <class T>
 struct Vector2D{
     T x,y;
-	
+
     // Note that default gives us the compiler generated
     // constructor.
     // If we wanted to forbid this, we could use 'delete'

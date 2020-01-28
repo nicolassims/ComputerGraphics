@@ -19,6 +19,10 @@ struct Vector4f{
     // This initializes the values x,y,z
     Vector4f(float a, float b, float c, float d){
       // TODO:
+      x = a;
+      y = b;
+      z = c;
+      w = d;
     }
 
     // Index operator, allowing us to access the individual
@@ -134,7 +138,7 @@ inline Vector4f Normalize(const Vector4f& v){
 // a x b (read: 'a crossed b')
 // Produces a new vector perpendicular to a and b.
 // (So long as a and b are not parallel which returns zero vector)
-// Note: For a Vector4f, we can only compute a cross porduct to 
+// Note: For a Vector4f, we can only compute a cross porduct to
 //       to vectors in 3-dimensions. Simply ignore w, and set to (0,0,0,1)
 //       for this vector.
 inline Vector4f CrossProduct(const Vector4f& a, const Vector4f& b){
