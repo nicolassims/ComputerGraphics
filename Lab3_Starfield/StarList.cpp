@@ -36,7 +36,7 @@ void StarList::updateAndRender(QImage& image, float delta, const QSize& windowSi
 
     // Note the conversion to radians
     // TODO: Modify me
-    float tanHalfFOV = qTan(1.22173);
+    float tanHalfFOV = qTan(1.22173/2);
 
     // Iterate through all of your stars
     for (int i = 0; i < stars_.size(); i++) {
