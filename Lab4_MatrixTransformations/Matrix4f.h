@@ -33,8 +33,6 @@ public:
 	}
 
     void InitTranslation(float x,float y,float z) {
-        // TODO:
-        // Implement  correct translation matrix
         m[0][0] = 1;    m[0][1] = 0; m[0][2] = 0; m[0][3] = x;
         m[1][0] = 0;    m[1][1] = 1; m[1][2] = 0; m[1][3] = y;
         m[2][0] = 0;    m[2][1] = 0; m[2][2] = 1; m[2][3] = z;
@@ -47,8 +45,6 @@ public:
         Matrix4f rx;
         Matrix4f ry;
         Matrix4f rz;
-
-        // TODO:
         float radX = qDegreesToRadians(x);
         float radY = qDegreesToRadians(y);
         float radZ = qDegreesToRadians(z);
