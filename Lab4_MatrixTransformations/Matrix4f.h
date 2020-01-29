@@ -64,7 +64,7 @@ public:
 
         ry.Set(0,0, qCos(radY));         ry.Set(0,1,0);      ry.Set(0,2,-qSin(radY));  ry.Set(0,3,0);
         ry.Set(1,0, 0);         ry.Set(1,1,1);      ry.Set(1,2,0);  ry.Set(1,3,0);
-        ry.Set(2,0, qSin(radY()));         ry.Set(2,1,0);      ry.Set(2,2,qCos(radY));  ry.Set(2,3,0);
+        ry.Set(2,0, qSin(radY));         ry.Set(2,1,0);      ry.Set(2,2,qCos(radY));  ry.Set(2,3,0);
         ry.Set(3,0, 0);         ry.Set(3,1,0);      ry.Set(3,2,0);  ry.Set(3,3,1);
 
         // Multiply the matrices
