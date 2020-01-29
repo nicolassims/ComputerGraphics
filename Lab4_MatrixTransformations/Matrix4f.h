@@ -1,6 +1,5 @@
 #ifndef MATRIX4F_H
 #define MATRIX4F_H
-#include <QtCore/QtMath>
 
 
 class Matrix4f{
@@ -36,10 +35,10 @@ public:
     void InitTranslation(float x,float y,float z) {
         // TODO:
         // Implement  correct translation matrix
-        m[0][0] = 1;    m[0][1] = 0; m[0][2] = 0; m[0][3] = x;
-        m[1][0] = 0;    m[1][1] = 1; m[1][2] = 0; m[1][3] = y;
-        m[2][0] = 0;    m[2][1] = 0; m[2][2] = 1; m[2][3] = z;
-        m[3][0] = 0;    m[3][1] = 0; m[3][2] = 0; m[3][3] = 1;
+        m[0][0] = 0;    m[0][1] = 0; m[0][2] = 0; m[0][3] = 0;
+        m[1][0] = 0;    m[1][1] = 0; m[1][2] = 0; m[1][3] = 0;
+        m[2][0] = 0;    m[2][1] = 0; m[2][2] = 0; m[2][3] = 0;
+        m[3][0] = 0;    m[3][1] = 0; m[3][2] = 0; m[3][3] = 0;
     }
 
     // x,y,z as angles
@@ -97,14 +96,11 @@ public:
     // Transform here is simply returning a 'new' vector
     // which will move our 'vertex' to a new position.
 	Vector4f Transform(Vector4f b){
-    // TODO: Implement transform
-    //       The pattern is given for the first component of the vector.
-    //       Fill in the values for the '0.0' for y,z,w
         return Vector4f(
             m[0][0] * b.GetX() + m[0][1] * b.GetY() + m[0][2] * b.GetZ() + m[0][3] * b.GetW(),
-            0.0,
-            0.0,
-            0.0);
+			m[1][0] * b.GetX() + m[1][1] * b.GetY() + m[1][2] * b.GetZ() + m[1][3] * b.GetW(),
+			m[2][0] * b.GetX() + m[2][1] * b.GetY() + m[2][2] * b.GetZ() + m[2][3] * b.GetW(),
+			m[3][0] * b.GetX() + m[3][1] * b.GetY() + m[3][2] * b.GetZ() + m[3][3] * b.GetW());
 	}
 
 
