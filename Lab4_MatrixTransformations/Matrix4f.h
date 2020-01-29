@@ -1,5 +1,6 @@
 #ifndef MATRIX4F_H
 #define MATRIX4F_H
+#include <QtCore/QtMath>
 
 
 class Matrix4f{
@@ -24,7 +25,7 @@ public:
 	// Essentially we are putting things directly into pixel space.
 	// Note: See how the 'x' and 'y' at the end of the matrix is set to halfwidth
 	// and halfHeight as well.
-	// We make the halfHeight negative at [1][1] because 0 is the top of the screen. 
+	// We make the halfHeight negative at [1][1] because 0 is the top of the screen.
 	void InitScreenSpaceTransform(float halfWidth,float halfHeight){
         m[0][0] = halfWidth;    m[0][1] = 0; 			m[0][2] = 0; m[0][3] = halfWidth;
         m[1][0] = 0;    		m[1][1] = -halfHeight; 	m[1][2] = 0; m[1][3] = halfHeight;
@@ -35,10 +36,10 @@ public:
     void InitTranslation(float x,float y,float z) {
         // TODO:
         // Implement  correct translation matrix
-        m[0][0] = 0;    m[0][1] = 0; m[0][2] = 0; m[0][3] = 0;
-        m[1][0] = 0;    m[1][1] = 0; m[1][2] = 0; m[1][3] = 0;
-        m[2][0] = 0;    m[2][1] = 0; m[2][2] = 0; m[2][3] = 0;
-        m[3][0] = 0;    m[3][1] = 0; m[3][2] = 0; m[3][3] = 0;
+        m[0][0] = 1;    m[0][1] = 0; m[0][2] = 0; m[0][3] = x;
+        m[1][0] = 0;    m[1][1] = 1; m[1][2] = 0; m[1][3] = y;
+        m[2][0] = 0;    m[2][1] = 0; m[2][2] = 1; m[2][3] = z;
+        m[3][0] = 0;    m[3][1] = 0; m[3][2] = 0; m[3][3] = 1;
     }
 
     // x,y,z as angles
@@ -47,28 +48,31 @@ public:
         Matrix4f rx;
         Matrix4f ry;
         Matrix4f rz;
-        
+
         // TODO:
-        rz.Set(0,0, 0);         rz.Set(0,1,0);      rz.Set(0,2,0);  rz.Set(0,3,0); 
-        rz.Set(1,0, 0);         rz.Set(1,1,0);      rz.Set(1,2,0);  rz.Set(1,3,0);
+        float radX = qDegreesToRadians(x);
+        float radY = qDegreesToRadians(y);
+        float radZ = qDegreesToRadians(z);
+        rz.Set(0,0,qCos(radZ));         rz.Set(0,1,-qSin(radZ));      rz.Set(0,2,0);  rz.Set(0,3,0);
+        rz.Set(1,0,qSin(radZ));         rz.Set(1,1,qCos(radZ));      rz.Set(1,2,0);  rz.Set(1,3,0);
         rz.Set(2,0, 0);         rz.Set(2,1,0);      rz.Set(2,2,1);  rz.Set(2,3,0);
         rz.Set(3,0, 0);         rz.Set(3,1,0);      rz.Set(3,2,0);  rz.Set(3,3,1);
-    
-        rx.Set(0,0, 1);         rx.Set(0,1,0);      rx.Set(0,2,0);  rx.Set(0,3,0); 
-        rx.Set(1,0, 0);         rx.Set(1,1,0);      rx.Set(1,2,0);  rx.Set(1,3,0);
-        rx.Set(2,0, 0);         rx.Set(2,1,0);      rx.Set(2,2,0);  rx.Set(2,3,0);
+
+        rx.Set(0,0, 1);         rx.Set(0,1,0);      rx.Set(0,2,0);  rx.Set(0,3,0);
+        rx.Set(1,0, 0);         rx.Set(1,1,qCos(radX));      rx.Set(1,2,-qSin(radX));  rx.Set(1,3,0);
+        rx.Set(2,0, 0);         rx.Set(2,1,qSin(radX));      rx.Set(2,2,qCos(radX));  rx.Set(2,3,0);
         rx.Set(3,0, 0);         rx.Set(3,1,0);      rx.Set(3,2,0);  rx.Set(3,3,1);
 
-        ry.Set(0,0, 0);         ry.Set(0,1,0);      ry.Set(0,2,0);  ry.Set(0,3,0); 
+        ry.Set(0,0, qCos(radY));         ry.Set(0,1,0);      ry.Set(0,2,-qSin(radY));  ry.Set(0,3,0);
         ry.Set(1,0, 0);         ry.Set(1,1,1);      ry.Set(1,2,0);  ry.Set(1,3,0);
-        ry.Set(2,0, 0);         ry.Set(2,1,0);      ry.Set(2,2,0);  ry.Set(2,3,0);
+        ry.Set(2,0, qSin(radY()));         ry.Set(2,1,0);      ry.Set(2,2,qCos(radY));  ry.Set(2,3,0);
         ry.Set(3,0, 0);         ry.Set(3,1,0);      ry.Set(3,2,0);  ry.Set(3,3,1);
-  
+
         // Multiply the matrices
         // Copy values into 'm'
-        SetMatrix(rz.Multiply(ry.Multiply(rx))); 
+        SetMatrix(rz.Multiply(ry.Multiply(rx)));
     }
-    
+
     // Initialize at a scale.
     void InitScale(float x,float y,float z){
         // Not implemented
@@ -76,7 +80,7 @@ public:
 
     // Initialize Perspective Matrix.
     void InitPerspective(float fov, float aspectRatio, float zNear, float zFar){
-        float tanHalfFOV = tan(fov/2 * M_PI / 180);    
+        float tanHalfFOV = tan(fov/2 * M_PI / 180);
         float zRange = zNear - zFar;
         m[0][0] = 1.0f/(tanHalfFOV*aspectRatio);m[0][1] = 0;                m[0][2] = 0; m[0][3] = 0;
         m[1][0] = 0;                            m[1][1] = 1.0f/tanHalfFOV;  m[1][2] = 0; m[1][3] = 0;
@@ -115,13 +119,13 @@ public:
                             m[i][1] * b.Get(1,j)+
                             m[i][2] * b.Get(2,j)+
                             m[i][3] * b.Get(3,j);
-                result.Set(i,j,dot); 
+                result.Set(i,j,dot);
             }
         }
 
         return result;
     }
-    
+
     // Set index of matrix to a value
     void Set(unsigned int i, unsigned int j, float value){
         m[i][j] = value;
@@ -141,7 +145,7 @@ public:
             }
         }
     }
-    
+
 
 private:
     float m[4][4];
