@@ -138,5 +138,3 @@ Vector4f operator *(const Matrix4f& M, const Vector4f& v){
 		M(2, 0) * v.x + M(2, 1) * v.y + M(2, 2) * v.z + M(2, 3) * v.w,
 		M(3, 0) * v.x + M(3, 1) * v.y + M(3, 2) * v.z + M(3, 3) * v.w);
 }
-
-#endif
