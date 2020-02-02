@@ -89,26 +89,31 @@ public:
         return(Matrix4f()); // You will need to modify this.
                             // When you test, test against glm_gtx_transform
     }
-
-
 };
 
 // Matrix Multiplication
 Matrix4f operator *(const Matrix4f& A, const Matrix4f& B){
-  // TODO:
-  Matrix4f mat4;
-
-  return mat4;
+	Matrix4f newmatrix;
+	float product;
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			product = 0;
+			for (int k = 0; k < 4; k++) {
+				product += A[i][k] * B[k][j];
+			}
+			newmatrix[i][j] = product;
+		}
+	}
+	return newmatrix;
 }
 
 // Matrix multiply by a vector
-
 Vector4f operator *(const Matrix4f& M, const Vector4f& v){
-  // TODO:
-  Vector4f vec;
-
-  return vec;
+	return Vector4f(
+		M(0, 0) * v.x + M(0, 1) * v.y + M(0, 2) * v.z + M(0, 3) * v.w,
+		M(1, 0) * v.x + M(1, 1) * v.y + M(1, 2) * v.z + M(1, 3) * v.w,
+		M(2, 0) * v.x + M(2, 1) * v.y + M(2, 2) * v.z + M(2, 3) * v.w,
+		M(3, 0) * v.x + M(3, 1) * v.y + M(3, 2) * v.z + M(3, 3) * v.w);
 }
-
 
 #endif
