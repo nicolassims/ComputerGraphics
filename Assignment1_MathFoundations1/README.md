@@ -6,13 +6,14 @@
 
 *TODO*: Please edit the following information in your assignment
 
-* Name and partners name (At most 1 partner for this assignment): Ben Hackney, Nicolas Karayakaylar
+* Name and partners name (At most 1 partner for this assignment):
+	>Ben Hackney, Nicolas Karayakaylar
 * How many hours did it take you to complete this assignment?
+	>0.5, so far.
 * Did you collaborate or share ideas with any other students/TAs/Professors?
+	>Professor Cooper assigned an assignment very much like this, so yes. Sort of.
 * Did you use any external resources?
-  * (tbd if any)
-  * (tbd if any)
-  * (tbd if any)
+	>Besides the aforementioned very-similar assignment, no.
 * (Optional) What was the most interesting part of the assignment? How would you improve this assignment?
 
 ## Logistics
