@@ -107,9 +107,9 @@ public:
     Matrix4f MakeScale(float sx,float sy, float sz){
         Matrix4f n;
         n.identity();
-        n[0][0] = n[0][0] * sx;
-        n[1][1] = n[1][1] * sy;
-        n[2][2] = n[2][2] * sz;
+        n[0][0] = sx;
+        n[1][1] = sy;
+        n[2][2] = sz;
         return(n);
     }
 };
