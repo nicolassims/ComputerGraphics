@@ -2,6 +2,7 @@
 // Our matrix should match the behavior of the glm library.
 #ifndef MATRIX4F_H
 #define MATRIX4F_H
+#include <QtCore/QtMath>
 
 #include <cmath>
 
