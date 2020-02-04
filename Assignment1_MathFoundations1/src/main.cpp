@@ -112,7 +112,7 @@ bool unitTest3(){
 	Vector4f c(0,0,1.0f,0);
 	Vector4f d(0,0,0,1.0f);
 	Matrix4f myScaled(a,b,c,d);
-    myScaled.MakeScale(2.0f,2.0f,2.0f);
+    myScaled = myScaled.MakeScale(2.0f,2.0f,2.0f);
 
     if(
         glmScale[0][0]==myScaled[0][0] &&
