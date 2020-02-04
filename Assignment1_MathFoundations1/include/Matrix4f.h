@@ -70,52 +70,42 @@ public:
 
     // Make a matrix rotate about various axis
     Matrix4f MakeRotationX(float t){
-        // TODO:
+        Matrix4f n;
+        n.identity();
         float radX = qDegreesToRadians(t);
-        n[1][1] = n[1][1] * qCos(radX);
-        n[1][2] = n[1][2] * -qSin(radX);
-        n[2][1] = n[2][1] * qSin(radX);
-        n[2][2] = n[2][2] * qCos(radX);
-        return(Matrix4f()); // You will need to modify this.
-                            // When you test, test against glm_gtx_transform
+        n[1][1] = qCos(radX);
+        n[1][2] = qSin(radX);
+        n[2][1] = -qSin(radX);
+        n[2][2] = qCos(radX);
+        return(n);
     }
     Matrix4f MakeRotationY(float t){
-        // TODO:
+        Matrix4f n;
+        n.identity();
         float radY = qDegreesToRadians(t);
-        n[0][0] = n[0][0] * qCos(radY);
-        n[0][2] = n[0][2] * qSin(radY);
-        n[2][0] = n[2][0] * -qSin(radY);
-        n[2][2] = n[2][2] * qCos(radY);
-        return(Matrix4f()); // You will need to modify this.
-                            // When you test, test against glm_gtx_transform
+        n[0][0] = qCos(radY);
+        n[0][2] = -qSin(radY);
+        n[2][0] = qSin(radY);
+        n[2][2] = qCos(radY);
+        return(n);
     }
     Matrix4f MakeRotationZ(float t){
-        // TODO:
+        Matrix4f n;
+        n.identity();
         float radZ = qDegreesToRadians(t);
-        n[0][0] = n[0][0] * qCos(radZ);
-        n[0][1] = n[0][1] * -qSin(radZ);
-        n[1][0] = n[1][0] * qSin(radZ);
-        n[1][1] = n[1][1] * qCos(radZ);
-        return(Matrix4f()); // You will need to modify this.
-                            // When you test, test against glm_gtx_transform
+        n[0][0] = qCos(radZ);
+        n[0][1] = qSin(radZ);
+        n[1][0] = -qSin(radZ);
+        n[1][1] = qCos(radZ);
+        return(n);
     }
     Matrix4f MakeScale(float sx,float sy, float sz){
-        // TODO:
+        Matrix4f n;
+        n.identity();
         n[0][0] = n[0][0] * sx;
-        n[0][1] = n[0][1] * sx;
-        n[0][2] = n[0][2] * sx;
-        n[0][3] = n[0][3] * sx;
-        n[1][0] = n[1][0] * sy;
         n[1][1] = n[1][1] * sy;
-        n[1][2] = n[1][2] * sy;
-        n[1][3] = n[1][3] * sy;
-        n[2][0] = n[2][0] * sz;
-        n[2][1] = n[2][1] * sz;
         n[2][2] = n[2][2] * sz;
-        n[2][3] = n[2][3] * sz;
-
-        return(Matrix4f()); // You will need to modify this.
-                            // When you test, test against glm_gtx_transform
+        return(n);
     }
 };
 
