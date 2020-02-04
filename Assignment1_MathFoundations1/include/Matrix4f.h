@@ -131,7 +131,7 @@ Matrix4f operator *(const Matrix4f& A, const Matrix4f& B){
 }
 
 // Matrix multiply by a vector
-Vector4f operator *(const Matrix4f& M, const Vector4f& v){
+Vector4f operator *(const Matrix4f& M, const Vector4f& v) {
 	return Vector4f(
 		M(0, 0) * v.x + M(0, 1) * v.y + M(0, 2) * v.z + M(0, 3) * v.w,
 		M(1, 0) * v.x + M(1, 1) * v.y + M(1, 2) * v.z + M(1, 3) * v.w,
