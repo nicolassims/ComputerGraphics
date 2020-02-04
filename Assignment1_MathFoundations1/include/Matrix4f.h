@@ -47,7 +47,7 @@ public:
 		n[3][0] = 0; n[3][1] = 0; n[3][2] = 0; n[3][3] = 1;
     }
 
-    // Index operator with two dimensions
+    // Index operator with 2 dimensions
     // Example: M(1,1) returns row 1 and column 1 of matrix M.
     float& operator ()(int i, int j){
       return (n[j][i]);
