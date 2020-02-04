@@ -1,6 +1,6 @@
 #ifndef MATRIX4F_H
 #define MATRIX4F_H
-#include <QtCore/Math>
+#include <QtCore/QtMath>
 
 
 class Matrix4f{
@@ -49,14 +49,14 @@ public:
         float radX = qDegreesToRadians(x);
         float radY = qDegreesToRadians(y);
         float radZ = qDegreesToRadians(z);
-        rz.Set(0,0,qCos(radZ));         rz.Set(0,1,-qSin(radZ));      rz.Set(0,2,0);  rz.Set(0,3,0);
-        rz.Set(1,0,qSin(radZ));         rz.Set(1,1,qCos(radZ));      rz.Set(1,2,0);  rz.Set(1,3,0);
+        rz.Set(0,0,qCos(radZ));         rz.Set(0,1,qSin(radZ));      rz.Set(0,2,0);  rz.Set(0,3,0);
+        rz.Set(1,0,-qSin(radZ));         rz.Set(1,1,qCos(radZ));      rz.Set(1,2,0);  rz.Set(1,3,0);
         rz.Set(2,0, 0);         rz.Set(2,1,0);      rz.Set(2,2,1);  rz.Set(2,3,0);
         rz.Set(3,0, 0);         rz.Set(3,1,0);      rz.Set(3,2,0);  rz.Set(3,3,1);
 
         rx.Set(0,0, 1);         rx.Set(0,1,0);      rx.Set(0,2,0);  rx.Set(0,3,0);
-        rx.Set(1,0, 0);         rx.Set(1,1,qCos(radX));      rx.Set(1,2,-qSin(radX));  rx.Set(1,3,0);
-        rx.Set(2,0, 0);         rx.Set(2,1,qSin(radX));      rx.Set(2,2,qCos(radX));  rx.Set(2,3,0);
+        rx.Set(1,0, 0);         rx.Set(1,1,qCos(radX));      rx.Set(1,2,qSin(radX));  rx.Set(1,3,0);
+        rx.Set(2,0, 0);         rx.Set(2,1,-qSin(radX));      rx.Set(2,2,qCos(radX));  rx.Set(2,3,0);
         rx.Set(3,0, 0);         rx.Set(3,1,0);      rx.Set(3,2,0);  rx.Set(3,3,1);
 
         ry.Set(0,0, qCos(radY));         ry.Set(0,1,0);      ry.Set(0,2,-qSin(radY));  ry.Set(0,3,0);
