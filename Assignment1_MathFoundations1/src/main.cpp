@@ -37,8 +37,8 @@ bool unitTest0(){
         glmIdentityMatrix[3][3]==myIdentity[3][3]){
             return true;
     }
-	
-    return false;	
+
+    return false;
 }
 
 bool unitTest1(){
@@ -67,8 +67,8 @@ bool unitTest1(){
         glmIdentityMatrix[3][3]==myIdentity(3,3)){
             return true;
     }
-	
-    return false;	
+
+    return false;
 }
 
 // Sample unit test comparing against GLM.
@@ -99,8 +99,8 @@ bool unitTest2(){
         glmIdentityMatrix[3][3]==myIdentity[3][3]){
             return true;
     }
-	
-    return false;	
+
+    return false;
 }
 
 // Sample unit test comparing against GLM.
@@ -133,8 +133,8 @@ bool unitTest3(){
         glmScale[3][3]==myScaled[3][3]){
             return true;
     }
-	
-    return false;	
+
+    return false;
 }
 
 // Sample unit test comparing against GLM.
@@ -156,8 +156,8 @@ bool unitTest4(){
         glmTest[2][3]==myMatrix[2][3] ){
             return true;
     }
-	
-    return false;	
+
+    return false;
 }
 
 // Sample unit test testing your library
