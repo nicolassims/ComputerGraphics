@@ -1,5 +1,6 @@
 #ifndef MATRIX4F_H
 #define MATRIX4F_H
+#include <QtCore/Math>
 
 
 class Matrix4f{
