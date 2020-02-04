@@ -9,7 +9,7 @@
 * Name and partners name (At most 1 partner for this assignment):
 	>Ben Hackney, Nicolas Karayakaylar
 * How many hours did it take you to complete this assignment?
-	>0.5, so far.
+	>4.5, when all was said and done.
 * Did you collaborate or share ideas with any other students/TAs/Professors?
 	>Professor Cooper assigned an assignment very much like this, so yes. Sort of.
 * Did you use any external resources?
