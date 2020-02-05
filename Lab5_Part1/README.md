@@ -12,6 +12,7 @@
 
 - How many hours did it take you to complete this lab?
 - Did you collaborate with any other students/TAs/Professors?
+Nikolas Karayakaylar
 - Did you use any external resources? (Cite them below)
   - tbd
   - tbd
@@ -39,7 +40,7 @@ For this lab, you need to build the project using the standard CMake build proce
 
 ## Part 2 - Shaders at a glance
 
-Take a look at the shaders in your program. See where they are stored, and what they are calling. Remembering what Shaders are, and think about what you need to modify (or rather, which of the two shaders you need to modify). 
+Take a look at the shaders in your program. See where they are stored, and what they are calling. Remembering what Shaders are, and think about what you need to modify (or rather, which of the two shaders you need to modify).
 
 Both shaders are here for your reference in case you want a fresh copy of either.
 
