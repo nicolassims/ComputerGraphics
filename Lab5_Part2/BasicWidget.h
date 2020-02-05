@@ -22,6 +22,8 @@ private:
   QOpenGLVertexArrayObject vao_;
 
 protected:
+	int drawVertices = 0;
+
   // Required interaction overrides
   void keyReleaseEvent(QKeyEvent* keyEvent) override;
 
