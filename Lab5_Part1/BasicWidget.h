@@ -4,7 +4,7 @@
 #include <QtWidgets>
 #include <QtOpenGL>
 
-#define USE_QT_OPENGL false
+#define USE_QT_OPENGL true
 
 /**
  * This is just a basic OpenGL widget that will allow a change of background color.
@@ -34,15 +34,15 @@ protected:
   unsigned int shaderID_;
 
   unsigned int compileShader(unsigned int type, const QString& shaderSrc);
-  
+
 #endif
 
-  
-  
+
+
 public:
   BasicWidget(QWidget* parent=nullptr);
   virtual ~BasicWidget();
-  
+
   // Make sure we have some size that makes sense.
   QSize sizeHint() const {return QSize(800,600);}
 };
