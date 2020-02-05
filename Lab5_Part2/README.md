@@ -12,6 +12,7 @@
 
 - How many hours did it take you to complete this lab?
 - Did you collaborate with any other students/TAs/Professors?
+Nikolas Karayakaylar
 - Did you use any external resources? (Cite them below)
   - tbd
   - tbd
@@ -109,7 +110,7 @@ Some additional resources to help you through this lab assignment
 - [docs.gl](http://docs.gl/)
 - [Learn OpenGL](https://learnopengl.com) - Helpful webpage with many useful
   tutorials
-  
+
 ## Deliverables
 
 - A triangle or a square depending on which indicies are selected to render.
