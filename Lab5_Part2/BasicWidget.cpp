@@ -145,11 +145,14 @@ void BasicWidget::keyReleaseEvent(QKeyEvent* keyEvent)
   // Handle key events here.
   if (keyEvent->key() == Qt::Key_Left) {
     qDebug() << "Left Arrow Pressed";
+	drawVertices = 3;
     update();  // We call update after we handle a key press to trigger a redraw when we are ready
   } else if (keyEvent->key() == Qt::Key_Right) {
     qDebug() << "Right Arrow Pressed";
+	drawVertices = 6;
     update();  // We call update after we handle a key press to trigger a redraw when we are ready
   } else {
+	drawVertices = 0;
     qDebug() << "You Pressed an unsupported Key!";
   }
   // ENDTODO
@@ -260,7 +263,7 @@ void BasicWidget::paintGL()
   shaderProgram_.bind();
   vao_.bind();
   // TODO: Change number of indices drawn
-  glDrawElements(GL_TRIANGLES, ??, GL_UNSIGNED_INT, 0);
+  glDrawElements(GL_TRIANGLES, drawVertices, GL_UNSIGNED_INT, 0);
   // ENDTODO
   vao_.release();
   shaderProgram_.release();
@@ -287,7 +290,7 @@ void BasicWidget::paintGL()
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboID_);
   // Render
   // TODO: Change number of indices drawn
-  glDrawElements(GL_TRIANGLES, ??, GL_UNSIGNED_INT, nullptr);
+  glDrawElements(GL_TRIANGLES, drawVertices, GL_UNSIGNED_INT, nullptr);
   // ENDTODO
   // Unbind everything
   glDisableVertexAttribArray(0);
