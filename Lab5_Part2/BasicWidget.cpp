@@ -209,8 +209,17 @@ void BasicWidget::initializeGL()
   vbo_.allocate(verts, 12 * sizeof(GL_FLOAT));
 
   // TODO:  Generate our color buffer
+  cbo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
+  cbo_.create();
+  cbo_.bind();
+  cbo_.allocate(colors, 16 * sizeof(GLuint));
   // ENDTODO
+
   // TODO:  Generate our index buffer
+  ibo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
+  ibo_.create();
+  ibo_.bind();
+  ibo_.allocate(idx, 6 * sizeof(GLuint));
   // ENDTODO
 
   // Create a VAO to keep track of things for us.
