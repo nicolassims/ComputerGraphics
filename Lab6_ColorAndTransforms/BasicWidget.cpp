@@ -29,7 +29,7 @@ QString BasicWidget::vertexShaderString() const
     "uniform mat4 modelMatrix;\n"
     "uniform mat4 viewMatrix;\n"
     "uniform mat4 projectionMatrix;\n"
-    
+
     "out vec4 vertColor;\n"
 
     "void main()\n"
@@ -99,7 +99,7 @@ void BasicWidget::initializeGL()
   model_.setToIdentity();
   view_.setToIdentity();
   projection_.setToIdentity();
-  
+
   // Setup the logger for real-time messaging
   connect(&logger_, &QOpenGLDebugLogger::messageLogged, [=](){
     const QList<QOpenGLDebugMessage> messages = logger_.loggedMessages();
@@ -108,7 +108,7 @@ void BasicWidget::initializeGL()
     }
   });
   logger_.startLogging();
-  
+
   QOpenGLContext* curContext = this->context();
   qDebug() << "[BasicWidget]::initializeGL() -- Context Information:";
   qDebug() << "  Context Valid: " << std::string(curContext->isValid() ? "true" : "false").c_str();
@@ -122,19 +122,16 @@ void BasicWidget::initializeGL()
   createShader();
 
   // Define our verts
-  static const GLfloat verts[9] =
+  static const GLfloat verts_colors[21] =
   {
     0.0f, 0.0f, 0.0f, // Center vertex position
+    1.0f, 0.0f, 0.0f, 1.0f, // red
     1.0f, 1.0f, 0.0f,  // Top right vertex position
-    -1.0f,  1.0f, 0.0f  // Top left vertex position
+    0.0f, 1.0f, 0.0f, 1.0f, // green
+    -1.0f,  1.0f, 0.0f,  // Top left vertex position
+    0.0f, 0.0f, 1.0f, 1.0f // blue
   };
-  // Define our vert colors
-  static const GLfloat colors[12] =
-  {
-      1.0f, 0.0f, 0.0f, 1.0f, // red
-      0.0f, 1.0f, 0.0f, 1.0f, // green
-      0.0f, 0.0f, 1.0f, 1.0f // blue
-  };
+
   // Define our indices
   static const GLuint idx[3] =
   {
@@ -144,13 +141,11 @@ void BasicWidget::initializeGL()
   // Temporary bind of our shader.
   shaderProgram_.bind();
 
-  // TODO:  Create a position + color buffer
-  // Note - use the vbo_ member provided 
+  // Note - use the vbo_ member provided
   vbo_.create();
   vbo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
   vbo_.bind();
-  vbo_.allocate(verts, 3 * 3 * sizeof(GL_FLOAT));
-  // END TODO
+  vbo_.allocate(verts_colors, (3 * 3 * sizeof(GL_FLOAT)) + (4 * 3 * sizeof(GL_FlOAT)));
 
   // TODO:  Generate our index buffer
   ibo_.create();
