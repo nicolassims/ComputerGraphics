@@ -34,9 +34,7 @@ QString BasicWidget::vertexShaderString() const
 
     "void main()\n"
     "{\n"
-    // TODO: gl_Position must be updated!
-    "  gl_Position = vec4(position, 1.0);\n"
-    // END TODO
+    "  gl_Position = vec4(-0.8 * position, 1.0);\n"
     "  vertColor = color;\n"
     "}\n";
   return str;
