@@ -143,31 +143,26 @@ void BasicWidget::initializeGL()
   vbo_.create();
   vbo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
   vbo_.bind();
-  vbo_.allocate(verts_colors, (3 * 3 * sizeof(GL_FLOAT)) + (4 * 3 * sizeof(GL_FlOAT)));
+  vbo_.allocate(verts_colors, (3 * 3 * sizeof(GL_FLOAT)) + (4 * 3 * sizeof(GL_FLOAT)));
 
-  // TODO:  Generate our index buffer
   ibo_.create();
   ibo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
   ibo_.bind();
   ibo_.allocate(idx, 3 * sizeof(GL_UNSIGNED_INT));
-  // ENDTODO
 
   // Create a VAO to keep track of things for us.
   vao_.create();
   vao_.bind();
   vbo_.bind();
-  // TODO:  Enable the attribute arrays for position and color
-  // Note:  Remember that Offset and Stride are expressed in terms
-  //        of bytes!
+
   shaderProgram_.enableAttributeArray(0);
-  shaderProgram_.setAttributeBuffer(0, GL_FLOAT, 0, 3);
+  shaderProgram_.setAttributeBuffer(0, GL_FLOAT, 0, 3, 7 * sizeof(GL_FLOAT));
 
   shaderProgram_.enableAttributeArray(1);
-  shaderProgram_.setAttributeBuffer(1, GL_FLOAT, 0, 4);
-  // END TODO
+  shaderProgram_.setAttributeBuffer(1, GL_FLOAT, 3 * sizeof(GL_FLOAT), 4, 7 * sizeof(GL_FLOAT));
 
   ibo_.bind();
-  // Releae the vao THEN the vbo
+  // Release the vao THEN the vbo
   vao_.release();
   shaderProgram_.release();
 
