@@ -2,7 +2,7 @@
 
 //////////////////////////////////////////////////////////////////////
 // Publics
-BasicWidget::BasicWidget(QWidget* parent) : QOpenGLWidget(parent), vbo_(QOpenGLBuffer::VertexBuffer), cbo_(QOpenGLBuffer::VertexBuffer), ibo_(QOpenGLBuffer::IndexBuffer), logger_(this)
+BasicWidget::BasicWidget(QWidget* parent) : QOpenGLWidget(parent), vbo_(QOpenGLBuffer::VertexBuffer), ibo_(QOpenGLBuffer::IndexBuffer), logger_(this)
 {
   setFocusPolicy(Qt::StrongFocus);
 }
@@ -34,9 +34,7 @@ QString BasicWidget::vertexShaderString() const
 
     "void main()\n"
     "{\n"
-    // TODO: gl_Position must be updated!
-    "  gl_Position = vec4(position, 1.0);\n"
-    // END TODO
+    "  gl_Position = vec4(-0.8 * position, 1.0);\n"
     "  vertColor = color;\n"
     "}\n";
   return str;
@@ -163,7 +161,7 @@ void BasicWidget::initializeGL()
   //        of bytes!
   shaderProgram_.enableAttributeArray(0);
   shaderProgram_.setAttributeBuffer(0, GL_FLOAT, 0, 3);
-  cbo_.bind();
+
   shaderProgram_.enableAttributeArray(1);
   shaderProgram_.setAttributeBuffer(1, GL_FLOAT, 0, 4);
   // END TODO
