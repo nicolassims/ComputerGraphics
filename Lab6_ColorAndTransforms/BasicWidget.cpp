@@ -151,13 +151,6 @@ void BasicWidget::initializeGL()
   vbo_.bind();
   vbo_.allocate(verts, 3 * 3 * sizeof(GL_FLOAT));
   // END TODO
-  
-  // TODO:  Remove the cbo_
-  cbo_.create();
-  cbo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
-  cbo_.bind();
-  cbo_.allocate(colors, 3 * 4 * sizeof(GL_FLOAT));
-  // END TODO
 
   // TODO:  Generate our index buffer
   ibo_.create();
