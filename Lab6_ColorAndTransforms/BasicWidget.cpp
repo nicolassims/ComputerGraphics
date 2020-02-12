@@ -34,7 +34,7 @@ QString BasicWidget::vertexShaderString() const
 
     "void main()\n"
     "{\n"
-    "  gl_Position = vec4(-0.8 * position, 1.0);\n"
+    "  gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(-0.8 * position, 1.0);\n"
     "  vertColor = color;\n"
     "}\n";
   return str;
@@ -169,11 +169,29 @@ void BasicWidget::initializeGL()
   glViewport(0, 0, width(), height());
 }
 
-void BasicWidget::resizeGL(int w, int h)
-{
+void BasicWidget::resizeGL(int w, int h) {
   glViewport(0, 0, w, h);
-  // TODO:  Set up the model, view, and projection matrices
-  // END TODO
+
+  model_ = QMatrix4x4(
+	1, 0, 0, 0,
+	0, 1, 0, 0,
+	0, 0, 1, 0,
+	0, 0, 0, 1);
+
+  view_.lookAt(QVector3D(4, 3, 3), // Camera is at (4,3,3), in World Space
+	QVector3D(0, 0, 0), // and looks at the origin
+	QVector3D(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
+  );
+
+  projection_.perspective(45.0f, (float)w / h, 0.1f, 100.0f);
+
+  shaderProgram_.bind();
+
+  shaderProgram_.setUniformValue("modelMatrix", model_);
+  shaderProgram_.setUniformValue("viewMatrix", view_);
+  shaderProgram_.setUniformValue("projectionMatrix", projection_);
+
+  shaderProgram_.release();
 }
 
 void BasicWidget::paintGL()
