@@ -11,10 +11,6 @@ BasicWidget::~BasicWidget()
 {
   vbo_.release();
   vbo_.destroy();
-  // TODO: Remove the CBO
-  cbo_.release();
-  cbo_.destroy();
-  // End TODO
   ibo_.release();
   ibo_.destroy();
   vao_.release();
