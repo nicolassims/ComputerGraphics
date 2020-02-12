@@ -12,6 +12,7 @@
 
 - How many hours did it take you to complete this lab?
 - Did you collaborate with any other students/TAs/Professors?
+Nicolas Karayakaylar, Ben Hackney
 - Did you use any external resources? (Cite them below)
   - tbd
   - tbd
@@ -45,7 +46,7 @@ For our second task, we are going to incorporate what we previously learned abou
 
 ## Task 1 - Color and glVertexAttribPointer
 
-You will find in the code "TODO" sections in: BasicWidget.h/.cpp 
+You will find in the code "TODO" sections in: BasicWidget.h/.cpp
 
 **The goal for this section is to render:**
 
@@ -62,27 +63,27 @@ The first thing we need to do is enable a new attribute. Once we do that, then w
 ```c
  glEnableVertexAttribArray(0);  // Finally pass in our vertex data   
          glVertexAttribPointer(  0,   // Attribute 0, which will match layout in shader
-                                 3,   // size (Number of components (2=x,y)  (3=x,y,z), etc.) 
+                                 3,   // size (Number of components (2=x,y)  (3=x,y,z), etc.)
                           GL_FLOAT, // Type of data
                           GL_FALSE, // Is the data normalized
                           sizeof(float)*6, // Stride - Amount of bytes between each vertex.
                           // If we only have vertex data, then this is 0.             
-                          // That means our vertices(or whatever data) is tightly packed, 
+                          // That means our vertices(or whatever data) is tightly packed,
                           // one after the other.    
-                          // If we add in vertex color information(3 more floats), 
-                          // then this becomes 6, as we move 6*sizeof(float) 
+                          // If we add in vertex color information(3 more floats),
+                          // then this becomes 6, as we move 6*sizeof(float)
                           // to get to the next chunk of data.                    
-                          // If we have normals, then we need to 
+                          // If we have normals, then we need to
                           // jump 3*sizeof(GL_FLOAT) bytes to get
                           // to our next vertex.
-                          0       // Pointer to the starting point of our data. 
-                                  // If we are just grabbing vertices, this is 0. 
-                                  // But if we have some other attribute, 
-                                  // (stored in the same data structure), 
+                          0       // Pointer to the starting point of our data.
+                                  // If we are just grabbing vertices, this is 0.
+                                  // But if we have some other attribute,
+                                  // (stored in the same data structure),
                                   // this may vary if the very first element
-                                  // is some different attribute. 
-                                  // If we had some data after (say normals), then 
-                                  // we would have an offset 
+                                  // is some different attribute.
+                                  // If we had some data after (say normals), then
+                                  // we would have an offset
                                   // of 3*sizeof(GL_FLOAT) for example
                             );       
 ```
