@@ -2,7 +2,7 @@
 
 //////////////////////////////////////////////////////////////////////
 // Publics
-BasicWidget::BasicWidget(QWidget* parent) : QOpenGLWidget(parent), vbo_(QOpenGLBuffer::VertexBuffer), cbo_(QOpenGLBuffer::VertexBuffer), ibo_(QOpenGLBuffer::IndexBuffer), logger_(this)
+BasicWidget::BasicWidget(QWidget* parent) : QOpenGLWidget(parent), vbo_(QOpenGLBuffer::VertexBuffer), ibo_(QOpenGLBuffer::IndexBuffer), logger_(this)
 {
   setFocusPolicy(Qt::StrongFocus);
 }
@@ -163,7 +163,7 @@ void BasicWidget::initializeGL()
   //        of bytes!
   shaderProgram_.enableAttributeArray(0);
   shaderProgram_.setAttributeBuffer(0, GL_FLOAT, 0, 3);
-  cbo_.bind();
+
   shaderProgram_.enableAttributeArray(1);
   shaderProgram_.setAttributeBuffer(1, GL_FLOAT, 0, 4);
   // END TODO
