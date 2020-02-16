@@ -4,6 +4,8 @@
 #include <QtWidgets>
 #include <QtOpenGL>
 
+#include "FileReader.h"//INCLUDED HERE ONLY FOR TESTING PURPOSES. //FIX THIS
+
 /**
  * This is just a basic OpenGL widget that will allow a change of background color.
  */
@@ -12,6 +14,7 @@ class BasicWidget : public QOpenGLWidget, protected QOpenGLFunctions
   Q_OBJECT
 
 private:
+	FileReader fr = FileReader("../../objects/cube.obj");//INCLUDED HERE ONLY FOR TESTING PURPOSES. //FIX THIS
 
 protected:
   // Required interaction overrides

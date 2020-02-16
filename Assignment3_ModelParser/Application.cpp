@@ -2,16 +2,13 @@
 
 #include "BasicWidget.h"
 
-Application::Application(QWidget* parent) : QMainWindow(parent)
-{
+Application::Application(QWidget* parent) : QMainWindow(parent) {
   buildGui();
 }
 
-Application::~Application()
-{}
+Application::~Application() {}
 
-void Application::buildGui()
-{
+void Application::buildGui() {
   // A simple menubar.
   QMenuBar* menu = menuBar();
   QMenu* file = menu->addMenu("File");
