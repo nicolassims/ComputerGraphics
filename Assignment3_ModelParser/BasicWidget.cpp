@@ -37,6 +37,11 @@ void BasicWidget::initializeGL() {
   makeCurrent();
   initializeOpenGLFunctions();
 
+  // All of our matrices should be set to identity for now.
+  model_.setToIdentity();
+  view_.setToIdentity();
+  projection_.setToIdentity();
+
   QOpenGLContext* curContext = this->context();
   qDebug() << "[BasicWidget]::initializeGL() -- Context Information:";
   qDebug() << "  Context Valid: " << std::string(curContext->isValid() ? "true" : "false").c_str();
@@ -45,6 +50,9 @@ void BasicWidget::initializeGL() {
   qDebug() << "  Renderer: " << reinterpret_cast<const char*>(glGetString(GL_RENDERER));
   qDebug() << "  Version: " << reinterpret_cast<const char*>(glGetString(GL_VERSION));
   qDebug() << "  GLSL Version: " << reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION));
+
+  // Set up our shaders.
+  createShader();
 
   //THE FOLLOWING CODE IS INCLUDED ONLY FOR TESTING PURPOSES //FIX THIS
   auto indices = fr.getIndices();
