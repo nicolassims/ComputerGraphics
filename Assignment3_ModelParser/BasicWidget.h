@@ -15,6 +15,7 @@ class BasicWidget : public QOpenGLWidget, protected QOpenGLFunctions
   Q_OBJECT
 
 private:
+	bool wireframe = false;
 	FileReader fr = FileReader("../../objects/cube.obj");//INCLUDED HERE ONLY FOR TESTING PURPOSES. //FIX THIS
 
 protected:

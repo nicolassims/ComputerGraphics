@@ -27,6 +27,10 @@ void BasicWidget::keyReleaseEvent(QKeyEvent* keyEvent)
 	} else if (keyEvent->key() == Qt::Key_Right) {
 		qDebug() << "Right Arrow Pressed";
 		update();  // We call update after we handle a key press to trigger a redraw when we are ready
+	} else if (keyEvent->key() == Qt::Key_W) {
+		qDebug() << "W Pressed";
+		wireframe = !wireframe;
+		update();  // We call update after we handle a key press to trigger a redraw when we are ready
 	} else {
 		qDebug() << "You Pressed an unsupported Key!";
 	}
@@ -95,6 +99,8 @@ void BasicWidget::paintGL()
 
   glClearColor(0.f, 0.f, 0.f, 1.f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  glPolygonMode(GL_FRONT_AND_BACK, !wireframe ? GL_FILL : GL_LINE);
 
   // TODO:  render.
 }
