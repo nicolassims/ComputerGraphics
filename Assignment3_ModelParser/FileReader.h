@@ -3,6 +3,9 @@
 
 #include <string>
 #include <vector>
+#include <fstream>
+#include <regex>
+#include <iostream>
 
 class FileReader {
 public:
@@ -13,10 +16,10 @@ public:
 	};
 
 	//Returns a vector of vertices, clumped up in threes
-	std::vector<Vector3> getVertices();
+	std::vector<unsigned int> getVertices();
 
 	//Returns a vector of normals, clumped up in threes
-	std::vector<Vector3> getNormals();
+	std::vector<unsigned int> getNormals();
 
 	//returns a vector of the indices of the object
 	std::vector<unsigned int> getIndices();
