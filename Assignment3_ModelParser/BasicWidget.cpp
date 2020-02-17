@@ -51,6 +51,9 @@ void BasicWidget::initializeGL() {
   qDebug() << "  Version: " << reinterpret_cast<const char*>(glGetString(GL_VERSION));
   qDebug() << "  GLSL Version: " << reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION));
 
+  // Set up our shaders.
+  createShader();
+
   //THE FOLLOWING CODE IS INCLUDED ONLY FOR TESTING PURPOSES //FIX THIS
   auto indices = fr.getIndices();
   std::cout << std::endl << "Printing indices:" << std::endl;
