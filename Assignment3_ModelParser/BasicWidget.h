@@ -3,6 +3,7 @@
 #include <QtGui>
 #include <QtWidgets>
 #include <QtOpenGL>
+#include <Vector>
 
 #include "FileReader.h"//INCLUDED HERE ONLY FOR TESTING PURPOSES. //FIX THIS
 

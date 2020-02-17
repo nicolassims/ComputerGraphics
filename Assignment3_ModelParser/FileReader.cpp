@@ -1,9 +1,5 @@
 #include "FileReader.h"
 
-#include <fstream>
-#include <regex>
-#include <iostream>
-
 FileReader::FileReader(std::string path) {
 	std::ifstream file(path);
 	if (!file) {
@@ -42,13 +38,25 @@ std::vector<std::string> FileReader::split(std::string matchee, std::string toke
 }
 
 // Retrieves the vertices
-std::vector<FileReader::Vector3> FileReader::getVertices() {
-	return vertices;
+std::vector<unsigned int> FileReader::getVertices() {
+	std::vector<unsigned int> verts;
+	for (int i = 0; i < vertices.size(); i++) {
+		verts.push_back(vertices[i].x);
+		verts.push_back(vertices[i].y);
+		verts.push_back(vertices[i].z);
+	}
+	return verts;
 }
 
 // Retrieves the normals
-std::vector<FileReader::Vector3> FileReader::getNormals() {
-	return normals;
+std::vector<unsigned int> FileReader::getNormals() {
+	std::vector<unsigned int> norms;
+	for (int i = 0; i < normals.size(); i++) {
+		norms.push_back(normals[i].x);
+		norms.push_back(normals[i].y);
+		norms.push_back(normals[i].z);
+	}
+	return norms;
 }
 
 // Returns the indices, off by one
