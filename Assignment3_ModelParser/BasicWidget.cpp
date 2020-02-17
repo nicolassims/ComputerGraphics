@@ -37,6 +37,11 @@ void BasicWidget::initializeGL() {
   makeCurrent();
   initializeOpenGLFunctions();
 
+  // All of our matrices should be set to identity for now.
+  model_.setToIdentity();
+  view_.setToIdentity();
+  projection_.setToIdentity();
+
   QOpenGLContext* curContext = this->context();
   qDebug() << "[BasicWidget]::initializeGL() -- Context Information:";
   qDebug() << "  Context Valid: " << std::string(curContext->isValid() ? "true" : "false").c_str();
