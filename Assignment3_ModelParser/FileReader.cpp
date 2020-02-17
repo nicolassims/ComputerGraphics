@@ -7,7 +7,8 @@
 FileReader::FileReader(std::string path) {
 	std::ifstream file(path);
 	if (!file) {
-		std::cerr << "404: File not found." << std::endl;//Is it safe to use the error code 404 here, just as a joke?
+		std::cerr << "File path not found." << std::endl;//Is it safe to use the error code 404 here, just as a joke?
+		// Should just say whatever the error was, no need to use numbers
 		exit(1);
 	}
 	std::string line;
@@ -34,20 +35,24 @@ FileReader::FileReader(std::string path) {
 	file.close();
 }
 
+// Make sure to comment what this does and why it's needed
 std::vector<std::string> FileReader::split(std::string matchee, std::string token) {//Just use built-in regex for this, easier than figuring it out from scratch
 	std::regex regex(token);
 	std::vector<std::string> out(std::sregex_token_iterator(matchee.begin(), matchee.end(), regex, -1), std::sregex_token_iterator());
 	return out;
 }
 
+// Retrieves the vertices
 std::vector<FileReader::Vector3> FileReader::getVertices() {
 	return vertices;
 }
 
+// Retrieves the normals
 std::vector<FileReader::Vector3> FileReader::getNormals() {
 	return normals;
 }
 
+// Just make sure to comment all functions
 std::vector<unsigned int> FileReader::getIndices() {
 	std::vector<unsigned int> returnable;
 	for (int i = 0; i < indices.size(); i++) {
@@ -64,7 +69,7 @@ std::vector<unsigned int> FileReader::getLines() {
 		returnable.push_back(indices[i + 1] - 1);//Second index to...
 		returnable.push_back(indices[i + 2] - 1);//third.
 		returnable.push_back(indices[i + 2] - 1);//third index to...
-		returnable.push_back(indices[i] - 1);//first 
+		returnable.push_back(indices[i] - 1);//first
 	}
 	return returnable;
 }
