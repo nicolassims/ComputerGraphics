@@ -17,10 +17,8 @@ bool unitTest0(){
         			     0,1.0f,0,0,
 		        	     0,0,1.0f,0,
 			             0,0,0,1.0f);
-
-    if(
-        glmIdentityMatrix[0][0]==myIdentity[0][0] &&
-        glmIdentityMatrix[0][1]==myIdentity[0][1] &&
+    if(glmIdentityMatrix[0][0]==myIdentity[0][0] &&
+		glmIdentityMatrix[0][1]==myIdentity[0][1] &&
         glmIdentityMatrix[0][2]==myIdentity[0][2] &&
         glmIdentityMatrix[0][3]==myIdentity[0][3] &&
         glmIdentityMatrix[1][0]==myIdentity[1][0] &&
@@ -35,9 +33,8 @@ bool unitTest0(){
         glmIdentityMatrix[3][1]==myIdentity[3][1] &&
         glmIdentityMatrix[3][2]==myIdentity[3][2] &&
         glmIdentityMatrix[3][3]==myIdentity[3][3]){
-            return true;
+			return true;
     }
-
     return false;
 }
 
@@ -48,8 +45,7 @@ bool unitTest1(){
 		        	     0,0,1.0f,0,
 			             0,0,0,1.0f);
 
-    if(
-        glmIdentityMatrix[0][0]==myIdentity(0,0) &&
+    if(glmIdentityMatrix[0][0]==myIdentity(0,0) &&
         glmIdentityMatrix[0][1]==myIdentity(0,1) &&
         glmIdentityMatrix[0][2]==myIdentity(0,2) &&
         glmIdentityMatrix[0][3]==myIdentity(0,3) &&
@@ -67,7 +63,6 @@ bool unitTest1(){
         glmIdentityMatrix[3][3]==myIdentity(3,3)){
             return true;
     }
-
     return false;
 }
 
@@ -80,8 +75,7 @@ bool unitTest2(){
 	Vector4f d(0.0f ,0.0f,  0.0f,   1.0f);
 	Matrix4f myIdentity(a,b,c,d);
 
-    if(
-        glmIdentityMatrix[0][0]==myIdentity[0][0] &&
+    if(glmIdentityMatrix[0][0]==myIdentity[0][0] &&
         glmIdentityMatrix[0][1]==myIdentity[0][1] &&
         glmIdentityMatrix[0][2]==myIdentity[0][2] &&
         glmIdentityMatrix[0][3]==myIdentity[0][3] &&
@@ -99,12 +93,10 @@ bool unitTest2(){
         glmIdentityMatrix[3][3]==myIdentity[3][3]){
             return true;
     }
-
     return false;
 }
 
 // Sample unit test comparing against GLM.
-// TODO: Test against glm::scale
 bool unitTest3(){
 	glm::mat4 glmScale = glm::mat4(2.0f);
 	Vector4f a(1.0f,0,0,0);
@@ -162,14 +154,110 @@ bool unitTest4(){
 
 // Sample unit test testing your library
 bool unitTest5(){
-  Vector4f a(1,1,1,1);
-  Vector4f b(0,0,0,0);
-  Vector4f c = a + b;
+	Vector4f a(1,1,1,1);
+	Vector4f b(0,0,0,0);
+	Vector4f c = a + b;
 
-  if(c.x == 1 && c.y == 1 && c.z ==1 && c.w==1){
-    return true;
-  }
-    return false;
+	if(c.x == 1 && c.y == 1 && c.z ==1 && c.w==1){
+		return true;
+	}
+	return false;
+}
+
+bool unitTest6() {
+	Vector4f v = Vector4f(1, 2, 3, 4);
+
+	v *= 4;
+	if (!(v.x == 4 && v.y == 8 && v.z == 12 && v.w == 16)) { return false; }
+
+	v *= -0.5;
+	if (!(v.x == -2 && v.y == -4 && v.z == -6 && v.w == -8)) { return false; }
+
+	v *= 0;
+	if (!(v.x == 0 && v.y == 0 && v.z == 0 && v.w == 0)) { return false; }
+
+	return true;
+}
+
+bool unitTest7() {
+	Vector4f v = Vector4f(1, 2, 4, 8);
+
+	v /= 2;
+	if (!(v.x == 0.5f && v.y == 1 && v.z == 2 && v.w == 4)) { return false; }
+
+	v /= -0.5;
+	if (!(v.x == -1 && v.y == -2 && v.z == -4 && v.w == -8)) { return false; }
+
+	try {
+		v /= 0;
+	} catch (std::invalid_argument e) {
+		return true;
+	}
+	return false;
+}
+
+bool unitTest8() {
+	Vector4f v = Vector4f(1, 2, 4, 8);
+
+	v += v;
+	if (!(v.x == 2 && v.y == 4 && v.z == 8 && v.w == 16)) { return false; }
+
+	v += v * -2;
+	if (!(v.x == -2 && v.y == -4 && v.z == -8 && v.w == -16)) { return false; }
+
+	v += Vector4f(0, 0, 0, 0);
+	if (!(v.x == -2 && v.y == -4 && v.z == -8 && v.w == -16)) { return false; }
+
+	return true;
+}
+
+bool unitTest9() {
+	Vector4f v = Vector4f(1, 2, 4, 8);
+
+	v -= v * 0.5;
+	if (!(v.x == 0.5f && v.y == 1 && v.z == 2 && v.w == 4)) { return false; }
+
+	v -= -v;
+	if (!(v.x == 1 && v.y == 2 && v.z == 4 && v.w == 8)) { return false; }
+
+	v -= Vector4f(0, 0, 0, 0);
+	if (!(v.x == 1 && v.y == 2 && v.z == 4 && v.w == 8)) { return false; }
+
+	return true;
+}
+
+bool unitTest10() {
+	Vector4f v = Vector4f(1, 2, 4, 8);
+	return Dot(v, v) == 85;
+}
+
+bool unitTest11() {
+	return Magnitude(Project(Vector4f(1, 3, 5, 7), Vector4f(1, 2, 4, 8))) == Magnitude(Vector4f(83.0f/84, 83.0f/28, 415.0f/84, 83.0f/12));
+}
+
+bool unitTest12() {
+	Vector4f v = Vector4f(1, 2, 4, 8);
+	return Magnitude(v) != 1 && Magnitude(Normalize(v)) == 1;
+}
+
+bool unitTest13() {
+	return Magnitude(CrossProduct(Vector4f(1, 3, 5, 1), Vector4f(2, 4, 8, 1))) == Magnitude(Vector4f(4, 2, -2, 1));
+}
+
+bool unitTest14() {
+	Matrix4f m = Matrix4f(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+	Matrix4f mm = m * m;
+
+	return mm[0][0] == 90 && mm[0][1] == 100 && mm[0][2] == 110 && mm[0][3] == 120 &&
+		mm[1][0] == 202 && mm[1][1] == 228 && mm[1][2] == 254 && mm[1][3] == 280 &&
+		mm[2][0] == 314 && mm[2][1] == 356 && mm[2][2] == 398 && mm[2][3] == 440 &&
+		mm[3][0] == 426 && mm[3][1] == 484 && mm[3][2] == 542 && mm[3][3] == 600;
+}
+
+bool unitTest15() {
+	Matrix4f m = Matrix4f(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+	Vector4f mv = m * Vector4f(1, 2, 4, 8);
+	return mv[0] == 49 && mv[1] == 109 && mv[2] == 169 && mv[3] == 229;
 }
 
 int main(){
@@ -183,6 +271,16 @@ int main(){
     std::cout << "Passed 3: " << unitTest3() << " \n";
     std::cout << "Passed 4: " << unitTest4() << " \n";
     std::cout << "Passed 5: " << unitTest5() << " \n";
+	std::cout << "Passed 6: " << unitTest6() << " \n";
+	std::cout << "Passed 7: " << unitTest7() << " \n";
+	std::cout << "Passed 8: " << unitTest8() << " \n";
+	std::cout << "Passed 9: " << unitTest9() << " \n";
+	std::cout << "Passed 10: " << unitTest10() << " \n";
+	std::cout << "Passed 11: " << unitTest11() << " \n";
+	std::cout << "Passed 12: " << unitTest12() << " \n";
+	std::cout << "Passed 13: " << unitTest13() << " \n";
+	std::cout << "Passed 14: " << unitTest14() << " \n";
+	std::cout << "Passed 15: " << unitTest15() << " \n";
 
     return 0;
 }
