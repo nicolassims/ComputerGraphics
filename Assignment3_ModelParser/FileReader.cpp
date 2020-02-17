@@ -7,8 +7,7 @@
 FileReader::FileReader(std::string path) {
 	std::ifstream file(path);
 	if (!file) {
-		std::cerr << "File path not found." << std::endl;//Is it safe to use the error code 404 here, just as a joke?
-		// Should just say whatever the error was, no need to use numbers
+		std::cerr << "File path not found." << std::endl;
 		exit(1);
 	}
 	std::string line;
@@ -35,7 +34,7 @@ FileReader::FileReader(std::string path) {
 	file.close();
 }
 
-// Make sure to comment what this does and why it's needed
+//Splits a provided string into a vector of strings that match a provided regex token.
 std::vector<std::string> FileReader::split(std::string matchee, std::string token) {//Just use built-in regex for this, easier than figuring it out from scratch
 	std::regex regex(token);
 	std::vector<std::string> out(std::sregex_token_iterator(matchee.begin(), matchee.end(), regex, -1), std::sregex_token_iterator());
@@ -52,7 +51,7 @@ std::vector<FileReader::Vector3> FileReader::getNormals() {
 	return normals;
 }
 
-// Just make sure to comment all functions
+// Returns the indices, off by one
 std::vector<unsigned int> FileReader::getIndices() {
 	std::vector<unsigned int> returnable;
 	for (int i = 0; i < indices.size(); i++) {
@@ -61,6 +60,7 @@ std::vector<unsigned int> FileReader::getIndices() {
 	return returnable;
 }
 
+//returns the index pairs that make up the lines of the model
 std::vector<unsigned int> FileReader::getLines() {
 	std::vector<unsigned int> returnable;
 	for (int i = 0; i < indices.size(); i += 3) {
