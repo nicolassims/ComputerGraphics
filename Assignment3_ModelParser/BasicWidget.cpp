@@ -21,7 +21,15 @@ void BasicWidget::keyReleaseEvent(QKeyEvent* keyEvent)
 {
   // TODO
   // Handle key events here.
-  qDebug() << "You Pressed an unsupported Key!";
+	if (keyEvent->key() == Qt::Key_Left) {
+		qDebug() << "Left Arrow Pressed";
+		update();  // We call update after we handle a key press to trigger a redraw when we are ready
+	} else if (keyEvent->key() == Qt::Key_Right) {
+		qDebug() << "Right Arrow Pressed";
+		update();  // We call update after we handle a key press to trigger a redraw when we are ready
+	} else {
+		qDebug() << "You Pressed an unsupported Key!";
+	}
   // ENDTODO
 }
 void BasicWidget::initializeGL() {
