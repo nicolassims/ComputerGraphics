@@ -178,7 +178,7 @@ void BasicWidget::resizeGL(int w, int h) {
 	0, 0, 1, 0,
 	0, 0, 0, 1);
 
-  view_.lookAt(QVector3D(4, 3, 3), // Camera is at (4,3,3), in World Space
+  view_.lookAt(QVector3D(2, -3, 3), // Camera is at (2,-3,3), in World Space
 	QVector3D(0, 0, 0), // and looks at the origin
 	QVector3D(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
   );
