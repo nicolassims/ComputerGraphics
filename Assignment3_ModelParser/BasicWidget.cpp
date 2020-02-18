@@ -59,10 +59,12 @@ void BasicWidget::initializeGL() {
   createShader();
 
   //Array of vertices
-  static GLfloat verts[fr.getVertices().size()] = fr.getVertices();
+  std::vector<unsigned int> v = fr.getVertices();
+  unsigned int *verts = &v[0];
 
   //Array of indices
-  static GLuint idx[fr.getIndices().size()] = fr.getIndices();
+  std::vector<unsigned int> i = fr.getIndices();
+  unsigned int *idx = &i[0];
 
   //THE FOLLOWING CODE IS INCLUDED ONLY FOR TESTING PURPOSES //FIX THIS
   auto indices = fr.getIndices();
