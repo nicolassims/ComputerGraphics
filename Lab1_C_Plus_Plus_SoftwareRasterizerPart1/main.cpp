@@ -1,12 +1,12 @@
 /** @file main.cpp
  *  @brief Entry point into our program.
- *  
- *  Welcome to the Great Looking Software Render 
+ *
+ *  Welcome to the Great Looking Software Render
  *  code base (Yes, I needed something with a gl prefix).
  *
  *  This is where you will implement your graphics API.
  *
- *  Compile on the terminal with: 
+ *  Compile on the terminal with:
  *
  *  clang++ -std=c++11 main.cpp -o main
  *
