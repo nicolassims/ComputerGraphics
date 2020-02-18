@@ -38,8 +38,8 @@ std::vector<std::string> FileReader::split(std::string matchee, std::string toke
 }
 
 // Retrieves the vertices
-std::vector<unsigned int> FileReader::getVertices() {
-	std::vector<unsigned int> verts;
+std::vector<int> FileReader::getVertices() {
+	std::vector<int> verts;
 	for (int i = 0; i < vertices.size(); i++) {
 		verts.push_back(vertices[i].x);
 		verts.push_back(vertices[i].y);
@@ -49,8 +49,8 @@ std::vector<unsigned int> FileReader::getVertices() {
 }
 
 // Retrieves the normals
-std::vector<unsigned int> FileReader::getNormals() {
-	std::vector<unsigned int> norms;
+std::vector<float> FileReader::getNormals() {
+	std::vector<float> norms;
 	for (int i = 0; i < normals.size(); i++) {
 		norms.push_back(normals[i].x);
 		norms.push_back(normals[i].y);

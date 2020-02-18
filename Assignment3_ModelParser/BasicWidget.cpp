@@ -14,6 +14,60 @@ BasicWidget::~BasicWidget()
 
 //////////////////////////////////////////////////////////////////////
 // Privates
+QString BasicWidget::vertexShaderString() const
+{
+	QString str =
+		"#version 330\n"
+		"layout(location = 0) in vec3 position;\n"
+		"layout(location = 1) in vec4 color;\n"
+
+		"uniform mat4 modelMatrix;\n"
+		"uniform mat4 viewMatrix;\n"
+		"uniform mat4 projectionMatrix;\n"
+
+		"out vec4 vertColor;\n"
+
+		"void main()\n"
+		"{\n"
+		"  gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(-0.8 * position, 1.0);\n"
+		"  vertColor = color;\n"
+		"}\n";
+	return str;
+}
+
+QString BasicWidget::fragmentShaderString() const
+{
+	QString str =
+		"#version 330\n"
+		"in vec4 vertColor;\n"
+		"out vec4 color;\n"
+		"void main()\n"
+		"{\n"
+		"  color = vertColor;\n"
+		"}\n";
+	return str;
+}
+
+void BasicWidget::createShader()
+{
+	QOpenGLShader vert(QOpenGLShader::Vertex);
+	vert.compileSourceCode(vertexShaderString());
+	QOpenGLShader frag(QOpenGLShader::Fragment);
+	frag.compileSourceCode(fragmentShaderString());
+	bool ok = shaderProgram_.addShader(&vert);
+	if (!ok) {
+		qDebug() << shaderProgram_.log();
+	}
+	ok = shaderProgram_.addShader(&frag);
+	if (!ok) {
+		qDebug() << shaderProgram_.log();
+	}
+	ok = shaderProgram_.link();
+	if (!ok) {
+		qDebug() << shaderProgram_.log();
+	}
+}
+
 
 ///////////////////////////////////////////////////////////////////////
 // Protected
@@ -36,6 +90,7 @@ void BasicWidget::keyReleaseEvent(QKeyEvent* keyEvent)
 	}
   // ENDTODO
 }
+
 void BasicWidget::initializeGL() {
 
   makeCurrent();
@@ -59,8 +114,8 @@ void BasicWidget::initializeGL() {
   createShader();
 
   //Array of vertices
-  std::vector<unsigned int> v = fr.getVertices();
-  unsigned int *verts = &v[0];
+  std::vector<int> v = fr.getVertices();
+  int *verts_colors = &v[0];
 
   //Array of indices
   std::vector<unsigned int> i = fr.getIndices();
