@@ -118,7 +118,7 @@ void BasicWidget::initializeGL() {
   unsigned int *verts = &v[0];
 
   //Array of indices
-  std::vector<unsigned int> idx = fr.getIndices();
+  std::vector<unsigned int> i = fr.getIndices();
   unsigned int *idx = &i[0];
 
   //THE FOLLOWING CODE IS INCLUDED ONLY FOR TESTING PURPOSES //FIX THIS
@@ -153,12 +153,12 @@ void BasicWidget::initializeGL() {
   vbo_.create();
   vbo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
   vbo_.bind();
-  vbo_.allocate(verts, verts.size() * sizeof(GL_FLOAT));
+  vbo_.allocate(verts_colors, fr.getVertices().size() * sizeof(GL_FLOAT));
 
   ibo_.create();
   ibo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
   ibo_.bind();
-  ibo_.allocate(idx, idx.size() * sizeof(GL_UNSIGNED_INT));
+  ibo_.allocate(idx, fr.getIndices().size() * sizeof(GL_UNSIGNED_INT));
 
   // Create a VAO to keep track of things for us.
   vao_.create();
