@@ -115,8 +115,8 @@ void BasicWidget::initializeGL() {
   createShader();
 
   //Array of vertices
-  std::vector<unsigned int> verts = fr.getVertices();
-  unsigned int *verts = &v[0];
+  std::vector<int> v = fr.getVertices();
+  int *verts = &v[0];
 
   //Array of indices
   std::vector<unsigned int> i = fr.getIndices();
@@ -154,7 +154,7 @@ void BasicWidget::initializeGL() {
   vbo_.create();
   vbo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
   vbo_.bind();
-  vbo_.allocate(verts_colors, fr.getVertices().size() * sizeof(GL_FLOAT));
+  vbo_.allocate(verts, fr.getVertices().size() * sizeof(GL_FLOAT));
 
   ibo_.create();
   ibo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
