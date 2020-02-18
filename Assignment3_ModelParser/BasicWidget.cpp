@@ -149,32 +149,32 @@ void BasicWidget::initializeGL() {
 
   shaderProgram_.bind();
 
-// Note - use the vbo_ member provided
-vbo_.create();
-vbo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
-vbo_.bind();
-vbo_.allocate(verts, (verts.size() * sizeof(GL_FLOAT)));
+  // Note - use the vbo_ member provided
+  vbo_.create();
+  vbo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
+  vbo_.bind();
+  vbo_.allocate(verts, verts.size() * sizeof(GL_FLOAT));
 
-ibo_.create();
-ibo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
-ibo_.bind();
-ibo_.allocate(idx, idx.size() * sizeof(GL_UNSIGNED_INT));
+  ibo_.create();
+  ibo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
+  ibo_.bind();
+  ibo_.allocate(idx, idx.size() * sizeof(GL_UNSIGNED_INT));
 
-// Create a VAO to keep track of things for us.
-vao_.create();
-vao_.bind();
-vbo_.bind();
+  // Create a VAO to keep track of things for us.
+  vao_.create();
+  vao_.bind();
+  vbo_.bind();
 
-shaderProgram_.enableAttributeArray(0);
-shaderProgram_.setAttributeBuffer(0, GL_FLOAT, 0, 3, 7 * sizeof(GL_FLOAT));
+  shaderProgram_.enableAttributeArray(0);
+  shaderProgram_.setAttributeBuffer(0, GL_FLOAT, 0, 3, 7 * sizeof(GL_FLOAT));
 
-shaderProgram_.enableAttributeArray(1);
-shaderProgram_.setAttributeBuffer(1, GL_FLOAT, 3 * sizeof(GL_FLOAT), 4, 7 * sizeof(GL_FLOAT));
+  shaderProgram_.enableAttributeArray(1);
+  shaderProgram_.setAttributeBuffer(1, GL_FLOAT, 3 * sizeof(GL_FLOAT), 4, 7 * sizeof(GL_FLOAT));
 
-ibo_.bind();
-// Release the vao THEN the vbo
-vao_.release();
-shaderProgram_.release();
+  ibo_.bind();
+  // Release the vao THEN the vbo
+  vao_.release();
+  shaderProgram_.release();
 
   glViewport(0, 0, width(), height());
 }
