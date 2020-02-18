@@ -16,10 +16,10 @@ public:
 	};
 
 	//Returns a vector of vertices, clumped up in threes
-	std::vector<unsigned int> getVertices();
+	std::vector<int> getVertices();
 
 	//Returns a vector of normals, clumped up in threes
-	std::vector<unsigned int> getNormals();
+	std::vector<float> getNormals();
 
 	//returns a vector of the indices of the object
 	std::vector<unsigned int> getIndices();

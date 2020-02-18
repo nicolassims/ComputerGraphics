@@ -15,6 +15,7 @@ class BasicWidget : public QOpenGLWidget, protected QOpenGLFunctions
   Q_OBJECT
 
 private:
+	QOpenGLVertexArrayObject vao_;
 	bool wireframe = false;
 	FileReader fr = FileReader("../../objects/cube.obj");//INCLUDED HERE ONLY FOR TESTING PURPOSES. //FIX THIS
 
@@ -23,13 +24,20 @@ private:
 	QMatrix4x4 projection_;
 
 protected:
-  // Required interaction overrides
+	QString vertexShaderString() const;
+	QString fragmentShaderString() const;
+	QOpenGLShaderProgram shaderProgram_;
+	void createShader();
+	// Required interaction overrides
   void keyReleaseEvent(QKeyEvent* keyEvent) override;
 
   // Required overrides form QOpenGLWidget
   void initializeGL() override;
   void resizeGL(int w, int h) override;
   void paintGL() override;
+
+  QOpenGLBuffer vbo_;
+  QOpenGLBuffer ibo_;
 
 public:
   BasicWidget(QWidget* parent=nullptr);
