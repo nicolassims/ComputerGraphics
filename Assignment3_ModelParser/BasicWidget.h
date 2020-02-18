@@ -18,6 +18,10 @@ private:
 	bool wireframe = false;
 	FileReader fr = FileReader("../../objects/cube.obj");//INCLUDED HERE ONLY FOR TESTING PURPOSES. //FIX THIS
 
+	QMatrix4x4 model_;
+	QMatrix4x4 view_;
+	QMatrix4x4 projection_;
+
 protected:
   // Required interaction overrides
   void keyReleaseEvent(QKeyEvent* keyEvent) override;

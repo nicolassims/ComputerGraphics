@@ -80,13 +80,13 @@ void BasicWidget::initializeGL() {
   auto normals = fr.getNormals();
   std::cout << std::endl << "Printing normals:" << std::endl;
   for (int i = 0; i < normals.size(); i++) {
-	  std::cout << "(" << normals[i].x << " " << normals[i].y << " " << normals[i].z << "), ";
+	  std::cout << normals[i] << ", ";
   }
 
   auto vertices = fr.getVertices();
   std::cout << std::endl << "Printing vertices:" << std::endl;
   for (int i = 0; i < vertices.size(); i++) {
-	  std::cout << "(" << vertices[i].x << " " << vertices[i].y << " " << vertices[i].z << "), ";
+	  std::cout << vertices[i] << ", ";
   }
   //THE PRIOR CODE IS INCLUDED ONLY FOR TESTING PURPOSES //FIX THIS
 
