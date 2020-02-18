@@ -166,10 +166,7 @@ void BasicWidget::initializeGL() {
   vbo_.bind();
 
   shaderProgram_.enableAttributeArray(0);
-  shaderProgram_.setAttributeBuffer(0, GL_FLOAT, 0, 3, 7 * sizeof(GL_FLOAT));
-
-  shaderProgram_.enableAttributeArray(1);
-  shaderProgram_.setAttributeBuffer(1, GL_FLOAT, 3 * sizeof(GL_FLOAT), 4, 7 * sizeof(GL_FLOAT));
+  shaderProgram_.setAttributeBuffer(0, GL_FLOAT, 0, 3, 3 * sizeof(GL_FLOAT));
 
   ibo_.bind();
   // Release the vao THEN the vbo
