@@ -90,6 +90,35 @@ void BasicWidget::initializeGL() {
   }
   //THE PRIOR CODE IS INCLUDED ONLY FOR TESTING PURPOSES //FIX THIS
 
+  shaderProgram_.bind();
+
+// Note - use the vbo_ member provided
+vbo_.create();
+vbo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
+vbo_.bind();
+vbo_.allocate(verts_colors, (3 * 3 * sizeof(GL_FLOAT)) + (4 * 3 * sizeof(GL_FLOAT)));
+
+ibo_.create();
+ibo_.setUsagePattern(QOpenGLBuffer::StaticDraw);
+ibo_.bind();
+ibo_.allocate(idx, 3 * sizeof(GL_UNSIGNED_INT));
+
+// Create a VAO to keep track of things for us.
+vao_.create();
+vao_.bind();
+vbo_.bind();
+
+shaderProgram_.enableAttributeArray(0);
+shaderProgram_.setAttributeBuffer(0, GL_FLOAT, 0, 3, 7 * sizeof(GL_FLOAT));
+
+shaderProgram_.enableAttributeArray(1);
+shaderProgram_.setAttributeBuffer(1, GL_FLOAT, 3 * sizeof(GL_FLOAT), 4, 7 * sizeof(GL_FLOAT));
+
+ibo_.bind();
+// Release the vao THEN the vbo
+vao_.release();
+shaderProgram_.release();
+
   glViewport(0, 0, width(), height());
 }
 
@@ -109,4 +138,9 @@ void BasicWidget::paintGL()
   glPolygonMode(GL_FRONT_AND_BACK, !wireframe ? GL_FILL : GL_LINE);
 
   // TODO:  render.
+  shaderProgram_.bind();
+  vao_.bind();
+  glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+  vao_.release();
+  shaderProgram_.release();
 }
