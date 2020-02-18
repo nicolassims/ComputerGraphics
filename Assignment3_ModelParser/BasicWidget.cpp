@@ -82,9 +82,11 @@ void BasicWidget::keyReleaseEvent(QKeyEvent* keyEvent)
 		qDebug() << "Right Arrow Pressed";
 		update();  // We call update after we handle a key press to trigger a redraw when we are ready
 	} else if (keyEvent->key() == Qt::Key_W) {
-		qDebug() << "W Pressed";
+		qDebug() << (wireframe ? "Wireframe off" : "Wireframe on");
 		wireframe = !wireframe;
 		update();  // We call update after we handle a key press to trigger a redraw when we are ready
+	} else if (keyEvent->key() == Qt::Key_Q) {
+		exit(1);
 	} else {
 		qDebug() << "You Pressed an unsupported Key!";
 	}
