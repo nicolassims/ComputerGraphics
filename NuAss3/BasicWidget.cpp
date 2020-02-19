@@ -79,13 +79,33 @@ void BasicWidget::keyReleaseEvent(QKeyEvent* keyEvent) {
 	if (keyEvent->key() == Qt::Key_1) {
 		qDebug() << "1 was pressed";
 		fr = FileReader("../../objects/bunny.obj");
-		initializeGL();// We call update after we handle a key press to trigger a redraw when we are ready
+		auto vertices = fr.getVertices();
+		auto indices = fr.getIndices();
+
+		vbo_.bind();
+		vbo_.allocate(&vertices[0], vertices.size() * sizeof(GL_FLOAT));
+
+		ibo_.bind();
+		ibo_.allocate(&indices[0], indices.size() * sizeof(GL_UNSIGNED_INT));
+		update();
+
 	} else if (keyEvent->key() == Qt::Key_2) {
 		qDebug() << "2 was pressed";
 		fr = FileReader("../../objects/monkey.obj");
-		initializeGL();  // We call update after we handle a key press to trigger a redraw when we are ready
+
+		auto vertices = fr.getVertices();
+		auto indices = fr.getIndices();
+
+		vbo_.bind();
+		vbo_.allocate(&vertices[0], vertices.size() * sizeof(GL_FLOAT));
+
+		ibo_.bind();
+		ibo_.allocate(&indices[0], indices.size() * sizeof(GL_UNSIGNED_INT));
+
+		update();
+		
 	} else if (keyEvent->key() == Qt::Key_W) {
-		 qDebug() << (wireframe ? "Wireframe off" : "Wireframe on");
+		 qDebug() << (!wireframe ? "Wireframe off" : "Wireframe on");
 		 wireframe = !wireframe;
 		 update();  // We call update after we handle a key press to trigger a redraw when we are ready
 	} else if (keyEvent->key() == Qt::Key_Q) {
@@ -177,7 +197,6 @@ void BasicWidget::paintGL() {
   } else {
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
   }
-
   glDrawElements(GL_TRIANGLES, fr.getIndices().size() * 3, GL_UNSIGNED_INT, 0);
   vao_.release();
   shaderProgram_.release();
