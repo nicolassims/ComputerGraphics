@@ -85,7 +85,6 @@ void BasicWidget::keyReleaseEvent(QKeyEvent* keyEvent) {
 		fr = FileReader("../../objects/monkey.obj");
 		initializeGL();  // We call update after we handle a key press to trigger a redraw when we are ready
 	} else if (keyEvent->key() == Qt::Key_W) {
-		 qDebug() << "W Pressed";
 		 qDebug() << (wireframe ? "Wireframe off" : "Wireframe on");
 		 wireframe = !wireframe;
 		 update();  // We call update after we handle a key press to trigger a redraw when we are ready
