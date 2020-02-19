@@ -76,12 +76,14 @@ void BasicWidget::createShader()
 // Protected
 void BasicWidget::keyReleaseEvent(QKeyEvent* keyEvent) {
 	// Handle key events here.
-	if (keyEvent->key() == Qt::Key_Left) {
-		qDebug() << "Left Arrow Pressed";
-		update();  // We call update after we handle a key press to trigger a redraw when we are ready
-	} else if (keyEvent->key() == Qt::Key_Right) {
-		qDebug() << "Right Arrow Pressed";
-		update();  // We call update after we handle a key press to trigger a redraw when we are ready
+	if (keyEvent->key() == Qt::Key_1) {
+		qDebug() << "1 was pressed";
+		fr = FileReader("../../objects/bunny.obj");
+		initializeGL();// We call update after we handle a key press to trigger a redraw when we are ready
+	} else if (keyEvent->key() == Qt::Key_2) {
+		qDebug() << "2 was pressed";
+		fr = FileReader("../../objects/monkey.obj");
+		initializeGL();  // We call update after we handle a key press to trigger a redraw when we are ready
 	} else if (keyEvent->key() == Qt::Key_W) {
 		 qDebug() << "W Pressed";
 		 qDebug() << (wireframe ? "Wireframe off" : "Wireframe on");
@@ -171,11 +173,11 @@ void BasicWidget::paintGL() {
   shaderProgram_.bind();
   vao_.bind();
 
-  // if (!wireframe) {//Ternary operator didn't work here
-	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-  // } else {
-	// glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-  // }
+  if (!wireframe) {//Ternary operator didn't work here
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+  } else {
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+  }
 
   glDrawElements(GL_TRIANGLES, fr.getIndices().size() * 3, GL_UNSIGNED_INT, 0);
   vao_.release();

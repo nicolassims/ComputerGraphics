@@ -23,7 +23,7 @@ private:
   QMatrix4x4 view_;
   QMatrix4x4 projection_;
 
-  FileReader fr = FileReader("../../objects/cube.obj");
+  FileReader fr = FileReader("../../objects/bunny.obj");
 
   bool wireframe;
   
