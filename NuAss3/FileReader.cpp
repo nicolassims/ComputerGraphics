@@ -38,8 +38,8 @@ std::vector<std::string> FileReader::split(std::string matchee, std::string toke
 }
 
 // Retrieves the vertices
-std::vector<int> FileReader::getVertices() {
-	std::vector<int> verts;
+std::vector<float> FileReader::getVertices() {
+	std::vector<float> verts;
 	for (int i = 0; i < vertices.size(); i++) {
 		verts.push_back(vertices[i].x);
 		verts.push_back(vertices[i].y);
