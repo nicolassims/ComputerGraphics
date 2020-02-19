@@ -7,13 +7,15 @@
 * Name and partners name(At most 1 partner for this Assignment):
   * Ben Hackney & Nicolas Karayakaylar
 * How many hours did it take you to complete this Assignment?
-  * Seven, so far.
+  * At least 20.
 * Did you collaborate or share ideas with any other students/TAs/Professors? 
+  * We asked a few questions on Piazza.
 * Did you use any external resources? 
   * Use this to figure out the regex. https://stackoverflow.com/questions/15625629/regex-expressions-in-java-s-vs-s
-  * (tbd if any)
-  * (tbd if any)
+  * Piazza, as mentioned before.
 * (Optional) What was the most interesting part of the assignment? How would you improve this assignment?
+  * It's really cool getting to draw something, but it felt like a lot of the assignment was just copying & pasting code from previous assignments, beccause so much of this depended on knowing very specific syntax.
+  * As an aside, this program seems to work better on Mac than on Windows.
   
 ## Description
 

@@ -77,7 +77,7 @@ void BasicWidget::createShader()
 void BasicWidget::keyReleaseEvent(QKeyEvent* keyEvent) {
 	// Handle key events here.
 	if (keyEvent->key() == Qt::Key_1) {
-		qDebug() << "1 was pressed";
+		qDebug() << "Loading bunny...";
 		fr = FileReader("../../objects/bunny.obj");
 		auto vertices = fr.getVertices();
 		auto indices = fr.getIndices();
@@ -88,9 +88,10 @@ void BasicWidget::keyReleaseEvent(QKeyEvent* keyEvent) {
 		ibo_.bind();
 		ibo_.allocate(&indices[0], indices.size() * sizeof(GL_UNSIGNED_INT));
 		update();
+		qDebug() << "Bunny loaded.";
 
 	} else if (keyEvent->key() == Qt::Key_2) {
-		qDebug() << "2 was pressed";
+		qDebug() << "Loading monkey...";
 		fr = FileReader("../../objects/monkey.obj");
 
 		auto vertices = fr.getVertices();
@@ -103,11 +104,12 @@ void BasicWidget::keyReleaseEvent(QKeyEvent* keyEvent) {
 		ibo_.allocate(&indices[0], indices.size() * sizeof(GL_UNSIGNED_INT));
 
 		update();
+		qDebug() << "Monkey loaded.";
 
 	} else if (keyEvent->key() == Qt::Key_W) {
 		 qDebug() << (!wireframe ? "Wireframe off" : "Wireframe on");
 		 wireframe = !wireframe;
-		 update();  // We call update after we handle a key press to trigger a redraw when we are ready
+		 update();
 	} else if (keyEvent->key() == Qt::Key_Q) {
 		exit(1);
 	} else {
