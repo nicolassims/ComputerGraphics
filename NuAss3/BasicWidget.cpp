@@ -170,12 +170,12 @@ void BasicWidget::paintGL() {
 
   shaderProgram_.bind();
   vao_.bind();
-
-  // if (!wireframe) {//Ternary operator didn't work here
-	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-  // } else {
-	// glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-  // }
+  
+  if (!wireframe) {//Ternary operator didn't work here
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+  } else {
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+  }
 
   glDrawElements(GL_TRIANGLES, fr.getIndices().size() * 3, GL_UNSIGNED_INT, 0);
   vao_.release();
