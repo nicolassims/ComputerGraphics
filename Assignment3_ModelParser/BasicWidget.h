@@ -17,8 +17,7 @@ class BasicWidget : public QOpenGLWidget, protected QOpenGLFunctions
 private:
 	QOpenGLVertexArrayObject vao_;
 	bool wireframe = false;
-	FileReader fr = FileReader("../../objects/cube.obj");//INCLUDED HERE ONLY FOR TESTING PURPOSES. //FIX THIS
-
+	FileReader fr = FileReader("../../objects/cube.obj");
 	QMatrix4x4 model_;
 	QMatrix4x4 view_;
 	QMatrix4x4 projection_;
@@ -42,7 +41,7 @@ protected:
 public:
   BasicWidget(QWidget* parent=nullptr);
   virtual ~BasicWidget();
-  
+
   // Make sure we have some size that makes sense.
   QSize sizeHint() const {return QSize(800,600);}
 };
