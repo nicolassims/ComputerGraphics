@@ -16,7 +16,7 @@ public:
 	};
 
 	//Returns a vector of vertices, clumped up in threes
-	std::vector<int> getVertices();
+	std::vector<float> getVertices();
 
 	//Returns a vector of normals, clumped up in threes
 	std::vector<float> getNormals();
