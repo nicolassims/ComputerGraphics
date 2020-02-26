@@ -11,11 +11,13 @@
 ## Modify this section
 
 - How many hours did it take you to complete this lab?
+	>2 Hours
 - Did you collaborate with any other students/TAs/Professors?
+	>No.
 - Did you use any external resources? (Cite them below)
-  - tbd
-  - tbd
+	>No.
 - (Optional) What was your favorite part of the lab?
+	>I like cats.
 - (Optional) How would you improve the lab?
 
 ## Logistics
@@ -40,9 +42,12 @@ During your co-ops, internships, and jobs you will often do a code review. Today
 
 Discuss with your partner the following:
 
-1. What are the advantages/disadvantages of the "Renderable" class?: *Add your answer here*
-2. Why do we call Renderable::draw(..) with the matrix info as parameters?: *Add your answer here*
-3. How you can move models in the scene?: *Add your answer here*
+1. What are the advantages/disadvantages of the "Renderable" class?:
+	>It's a common "component" that every renderable object can contain, vastly simplifying the code of all those aforementioned objects. However, it does bring with it the gamut of problems that inehritance often brings with it, including the deadly diamond.
+2. Why do we call Renderable::draw(..) with the matrix info as parameters?:
+	>We need to set the view and projection uniorm values, and passing in the matrices is the easiest way to do so. 
+3. How you can move models in the scene?:
+	>Simply change the modelMatrix, which will transform them however you'd like.
 
 ## Part 2 - Textures
 
