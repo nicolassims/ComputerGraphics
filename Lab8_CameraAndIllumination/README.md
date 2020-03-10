@@ -17,6 +17,7 @@
 
 - How many hours did it take you to complete this lab?
 - Did you collaborate with any other students/TAs/Professors?
+    Nicolas Karayakaylar, Ben Hackney
 - Did you use any external resources? (Cite them below)
   - tbd
   - tbd
@@ -74,7 +75,7 @@ This is what you are suppose to implement. Study it.
 // Read in our attributes stored from our vertex buffer object
 // We explicitly state which is the vertex information
 // (The first 3 floats are positional data, we are putting in our vector)
-layout(location=0)in vec3 position; 
+layout(location=0)in vec3 position;
 layout(location=1)in vec3 normals; // Our second attribute - normals.
 layout(location=2)in vec2 texCoord; // Our third attribute - texture coordinates.
 layout(location=3)in vec3 tangents; // Our third attribute - texture coordinates.
@@ -155,13 +156,13 @@ in vec2 v_texCoord;
 in vec3 FragPos;
 
 // If we have texture coordinates, they are stored in this sampler.
-uniform sampler2D u_DiffuseMap; 
+uniform sampler2D u_DiffuseMap;
 
 void main()
 {
     // Compute the normal direction
     vec3 norm = normalize(myNormal);
-    
+
     // Store our final texture color
     vec3 diffuseColor;
     diffuseColor = texture(u_DiffuseMap, v_texCoord).rgb;
@@ -187,7 +188,7 @@ void main()
     vec3 specular = pointLights[0].specularStrength * spec * pointLights[0].lightColor;
 
     // Calculate Attenuation here
-    // distance and lighting... 
+    // distance and lighting...
 
     // Our final color is now based on the texture.
     // That is set by the diffuseColor
