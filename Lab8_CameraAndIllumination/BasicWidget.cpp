@@ -64,8 +64,7 @@ void BasicWidget::mouseMoveEvent(QMouseEvent* mouseEvent)
   if (mouseAction_ == Rotate) {
     // TODO:  Implement rotating the camera
   } else if (mouseAction_ == Zoom) {
-    // TODO:  Implement zoom by moving the camera
-    // Zooming is moving along the gaze direction by some amount.
+	  camera_.translateCamera(camera_.gazeVector() * 0.01f);
   } 
   update();
 }
