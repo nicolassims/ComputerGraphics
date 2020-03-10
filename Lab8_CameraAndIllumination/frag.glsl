@@ -1,4 +1,3 @@
-// ==================================================================
 #version 330 core
 
 // The final output color of each 'fragment' from our fragment shader.

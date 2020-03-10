@@ -1,4 +1,3 @@
-// ==================================================================
 #version 330 core
 // Read in our attributes stored from our vertex buffer object
 // We explicitly state which is the vertex information
@@ -36,4 +35,3 @@ void main()
     // the next stage in the graphics pipeline.
     v_texCoord = texCoord;
 }
-// ==================================================================
