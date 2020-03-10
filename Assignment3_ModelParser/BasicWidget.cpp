@@ -1,5 +1,7 @@
 #include "BasicWidget.h"
 
+//LOOK INTO MAKE CURRENT
+
 //////////////////////////////////////////////////////////////////////
 // Publics
 BasicWidget::BasicWidget(QWidget* parent) : QOpenGLWidget(parent), vbo_(QOpenGLBuffer::VertexBuffer), ibo_(QOpenGLBuffer::IndexBuffer), logger_(this)

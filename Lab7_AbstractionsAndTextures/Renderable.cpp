@@ -125,6 +125,9 @@ void Renderable::update(const qint64 msSinceLastFrame)
 
 void Renderable::draw(const QMatrix4x4& view, const QMatrix4x4& projection)
 {
+	//translate to image location, rotate
+	//add location member to renderable class
+
 	// Create our model matrix.
 	QMatrix4x4 rotMatrix;
 	rotMatrix.setToIdentity();

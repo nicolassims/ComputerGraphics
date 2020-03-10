@@ -28,9 +28,11 @@ void BasicWidget::keyReleaseEvent(QKeyEvent* keyEvent)
 {
   // Handle key events here.
   if (keyEvent->key() == Qt::Key_Left) {
+	  camera_.translateCamera(QVector3D(0.2f, 0, 0));
     qDebug() << "Left Arrow Pressed";
     update();  // We call update after we handle a key press to trigger a redraw when we are ready
   } else if (keyEvent->key() == Qt::Key_Right) {
+	  camera_.translateCamera(QVector3D(-0.2f, 0, 0));
     qDebug() << "Right Arrow Pressed";
     update();  // We call update after we handle a key press to trigger a redraw when we are ready
   } else if (keyEvent->key() == Qt::Key_R) {

@@ -40,13 +40,18 @@ void BasicWidget::initializeGL()
   qDebug() << QDir::currentPath();
   QString texFile = "../../cat3.ppm";
   QVector<QVector3D> pos;
+  QVector<QVector3D> pos2;
   QVector<QVector3D> norm;
   QVector<QVector2D> texCoord;
   QVector<unsigned int> idx;
-  pos << QVector3D(-0.8, -0.8, 0.0);
-  pos << QVector3D(0.8, -0.8, 0.0);
-  pos << QVector3D(-0.8, 0.8, 0.0);
   pos << QVector3D(0.8, 0.8, 0.0);
+  pos << QVector3D(0.1, 0.8, 0.0);
+  pos << QVector3D(0.8, 0.1, 0.0);
+  pos << QVector3D(0.1, 0.1, 0.0);
+  pos2 << QVector3D(-0.8, -0.8, 0.0);
+  pos2 << QVector3D(-0.1, -0.8, 0.0);
+  pos2 << QVector3D(-0.8, -0.1, 0.0);
+  pos2 << QVector3D(-0.1, -0.1, 0.0);
   // We don't actually use the normals right now, but this will be useful later!
   norm << QVector3D(0.0, 0.0, 1.0);
   norm << QVector3D(0.0, 0.0, 1.0);
@@ -59,8 +64,12 @@ void BasicWidget::initializeGL()
   texCoord << QVector2D(1, 0);
   texCoord << QVector2D(1, 1);
   Renderable* ren = new Renderable();
+  Renderable* ren2 = new Renderable();
   ren->init(pos, norm, texCoord, idx, texFile);
+  ren2->init(pos2, norm, texCoord, idx, texFile);
+  renderables_.push_back(ren2);
   renderables_.push_back(ren);
+  
   glViewport(0, 0, width(), height());
   frameTimer_.start();
 }
