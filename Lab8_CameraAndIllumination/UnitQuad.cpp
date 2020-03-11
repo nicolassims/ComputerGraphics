@@ -48,8 +48,8 @@ void UnitQuad::update(const qint64 msSinceLastFrame)
     newPos.setX(0.5);
     // TODO:  Understand how the light gets initialized/setup.
     shader_.bind();
-    shader_.setUniformValue("pointLights[0].color", 1.0f, 1.0f, 1.0f);
-    shader_.setUniformValue("pointLights[0].position", newPos);
+    shader_.setUniformValue("pointLights[0].lightColor", 1.0f, 1.0f, 1.0f);
+    shader_.setUniformValue("pointLights[0].lightPos", newPos);
 
     shader_.setUniformValue("pointLights[0].ambientIntensity", 0.5f);
     shader_.setUniformValue("pointLights[0].specularStrength", 0.5f);

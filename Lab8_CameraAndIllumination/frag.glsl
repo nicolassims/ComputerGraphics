@@ -1,5 +1,12 @@
 #version 330 core
 
+// Take in our texture coordinate from our vertex shader
+in vec2 texCoords;
+// And our normal
+in vec3 norm;
+// And our fragment position for lighting
+in vec3 fragPos;
+
 // The final output color of each 'fragment' from our fragment shader.
 out vec4 FragColor;
 
@@ -35,13 +42,13 @@ in vec2 v_texCoord;
 in vec3 FragPos;
 
 // If we have texture coordinates, they are stored in this sampler.
-uniform sampler2D u_DiffuseMap; 
+uniform sampler2D u_DiffuseMap;
 
 void main()
 {
     // Compute the normal direction
     vec3 norm = normalize(myNormal);
-    
+
     // Store our final texture color
     vec3 diffuseColor;
     diffuseColor = texture(u_DiffuseMap, v_texCoord).rgb;
@@ -67,7 +74,7 @@ void main()
     vec3 specular = pointLights[0].specularStrength * spec * pointLights[0].lightColor;
 
     // Calculate Attenuation here
-    // distance and lighting... 
+    // distance and lighting...
 
     // Our final color is now based on the texture.
     // That is set by the diffuseColor
