@@ -3,7 +3,6 @@
 #include <QtGui>
 #include <QtWidgets>
 #include <QtOpenGL>
-
 #include "Displayable.h"
 
 class BasicWidget : public QOpenGLWidget, protected QOpenGLFunctions {//Basic OpenGL Widget. Gives access to OpenGL functions.
