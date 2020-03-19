@@ -6,9 +6,9 @@
 
 class Displayable {
 protected:
-	QMatrix4x4 modelMatrix_;//The matrix used to keep track of the renderable's model
-	QOpenGLShaderProgram shader_;//the renderable's shader
-	QOpenGLTexture texture_;//the renderable's texture
+	QMatrix4x4 modelMatrix_;//The matrix used to keep track of the displayable's model
+	QOpenGLShaderProgram shader_;//the displayable's shader
+	QOpenGLTexture texture_;//the displayable's texture
 	QOpenGLBuffer vbo_;//vertex buffer
 	QOpenGLBuffer ibo_;//index  buffer
 	QOpenGLVertexArrayObject vao_;//used during the draw call

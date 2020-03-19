@@ -34,9 +34,9 @@ void Displayable::init(const QVector<QVector3D>& positions, const QVector<QVecto
 	}
 	idxCount = indexes.size();//setting count of indices
 	int numVBOEntries = positions.size() * vertexSize_;
-	createShaders();//Setup our shader.
+	createShaders();//setup our shader
 	
-	vao_.create();//Next few lines handle vertex buffers
+	vao_.create();//next few lines handle vertex buffers
 	vao_.bind();
 	vbo_.create();
 	vbo_.setUsagePattern(QOpenGLBuffer::StaticDraw);//nothing is changing in the scene right now. But maybe this should be DynamicDraw if I were doing anything else.
