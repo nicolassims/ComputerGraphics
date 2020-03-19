@@ -7,6 +7,7 @@
 
 * Name and partners name(At most 1 partner for this Assignment): 
 	> Nicolas Karayakaylar
+	
 	> Ben Hackney
 * How many hours did it take you to complete this Assignment? 
 	> 18... ish...?
@@ -14,6 +15,7 @@
 	> Nope
 * Did you use any external resources? 
 	> Countless amounts of Stack Overflow.
+	
 	> Also, it's worth mentioning that probably 90% of this code is from the previous assignment.
 * (Optional) What was the most interesting part of the assignment? How would you improve this assignment?
   
