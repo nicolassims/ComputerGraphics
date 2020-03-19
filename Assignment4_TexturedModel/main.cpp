@@ -22,6 +22,7 @@ int main(int argc, char** argv) {
 	fmt.setProfile(QSurfaceFormat::CoreProfile);
 	QSurfaceFormat::setDefaultFormat(fmt);
 
+	//All code above here is provided. The following code is just a simple setup of the application.
 	std::string objFilename(argv[1]);
 	Application app(0, objFilename);
 	app.show();
