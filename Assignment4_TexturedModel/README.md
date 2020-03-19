@@ -4,15 +4,17 @@
 <img align="right" src="./media/house.jpg" width="400px" alt="picture">
 
 
-*TODO*: Please edit the following information in your assignment
 
 * Name and partners name(At most 1 partner for this Assignment): 
+	> Nicolas Karayakaylar
+	> Ben Hackney
 * How many hours did it take you to complete this Assignment? 
-* Did you collaborate or share ideas with any other students/TAs/Professors? 
+	> 18... ish...?
+* Did you collaborate or share ideas with any other students/TAs/Professors?
+	> Nope
 * Did you use any external resources? 
-  * (tbd if any)
-  * (tbd if any)
-  * (tbd if any)
+	> Countless amounts of Stack Overflow.
+	> Also, it's worth mentioning that probably 90% of this code is from the previous assignment.
 * (Optional) What was the most interesting part of the assignment? How would you improve this assignment?
   
 ## Description
