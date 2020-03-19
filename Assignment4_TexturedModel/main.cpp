@@ -5,24 +5,25 @@
 #include <QtCore>
 #include <QtGui>
 #include <QtOpenGL>
-
-// TODO:  you have to include whatever application-specific code there is here.  This should be
-// a subclass of QMainWindow!
+#include "Application.h"
 
 int main(int argc, char** argv) {
-  QApplication a(argc, argv);
-  QString appDir = a.applicationDirPath();
-  QDir::setCurrent(appDir);
+	if (argc != 2) {//If no argument is provided, or two many are, then it defaults to displaying the house model, largely for testing purposes.
+		argv[1] = "../../objects/house/house_obj.obj";
+	}
+	QApplication a(argc, argv);
+	QString appDir = a.applicationDirPath();
+	QDir::setCurrent(appDir);
 
-  QSurfaceFormat fmt;
-  fmt.setDepthBufferSize(24);
-  fmt.setStencilBufferSize(8);
-  fmt.setVersion(3,3);
-  fmt.setProfile(QSurfaceFormat::CoreProfile);
-  QSurfaceFormat::setDefaultFormat(fmt);
+	QSurfaceFormat fmt;
+	fmt.setDepthBufferSize(24);
+	fmt.setStencilBufferSize(8);
+	fmt.setVersion(3, 3);
+	fmt.setProfile(QSurfaceFormat::CoreProfile);
+	QSurfaceFormat::setDefaultFormat(fmt);
 
-  // TODO:  Replace the following 3 lines with whatever you need to create, show, and execute your application
-  //Application app;
-  //app.show();
-  //return QApplication::exec();
+	std::string objFilename(argv[1]);
+	Application app(0, objFilename);
+	app.show();
+	return QApplication::exec();
 }
