@@ -12,7 +12,7 @@
 * How many hours did it take you to complete this Assignment? 
 	> 18... ish...?
 * Did you collaborate or share ideas with any other students/TAs/Professors?
-	> Nope
+	> Nope.
 * Did you use any external resources? 
 	> Countless amounts of Stack Overflow.
 	
