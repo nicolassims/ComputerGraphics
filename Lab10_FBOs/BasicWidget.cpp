@@ -251,7 +251,6 @@ void BasicWidget::paintGL()
   // At this point, our FBO has our rendered scene in it.
   // We now want to do the second render pass to paste it onto a quad as if it were a
   // normal texture.
-  // TODO -- Note, Qt doesn't expose the textures an QOpenGLFrameBufferObject stores directly
   // instead, it provides a method to get the textureID that it used to render to.
   // We now want to bind it and use it to render our screen-sized quad
   GLuint fboTextureId = fbo.texture();
