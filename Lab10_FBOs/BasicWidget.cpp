@@ -177,7 +177,6 @@ void BasicWidget::initializeGL()
   setupShaders();
 
   qDebug() << QDir::currentPath();
-  // TODO:  You may have to change these paths.
   QString terrainTex = "../../colormap.ppm";
 
   TerrainQuad* terrain = new TerrainQuad();
