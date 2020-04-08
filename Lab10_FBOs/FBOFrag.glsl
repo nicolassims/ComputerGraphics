@@ -12,10 +12,11 @@ uniform sampler2D FBOTex;              // our primary texture
 void main() {
   // Set our output fragment color to whatever we pull from our input texture (Note, change 'tex' to whatever the sampler is named)
   // The variable 'color' will now contain whatever would have been on screen if we were rendering directly.
-  vec3 color = texture(FBOTex, texCoords).rgb;
   // We can now modify things a bit to provide some nice post-processing effects.
   // TODO - Implement some type of post-processing effect here.
-  vec3 red = vec3(color.y, color.x, color.z);
-  
-  fragColor = vec4(red, 1.0);
+  vec3 redshift = texture(FBOTex, texCoords).rgb;
+  if (redshift.x != 0 || redshift.x != 0 || redshift.x != 0) {
+    redshift.x = texCoords.y * 3;
+  }
+  fragColor = vec4(redshift, 1.0);
 }
