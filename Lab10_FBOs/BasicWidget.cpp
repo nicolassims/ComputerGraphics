@@ -131,7 +131,6 @@ void BasicWidget::setupViewQuad()
 // We need to set up different shaders for our post-processing step. 
 void BasicWidget::setupShaders()
 {
-    // TODO:  You may need to change these paths based on how/where you choose to build
     QString vertexFilename = "../../FBOVert.glsl";
     bool ok = shader_.addShaderFromSourceFile(QOpenGLShader::Vertex, vertexFilename);
     if (!ok) {
