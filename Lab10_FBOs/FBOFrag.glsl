@@ -15,5 +15,7 @@ void main() {
   vec3 color = texture(FBOTex, texCoords).rgb;
   // We can now modify things a bit to provide some nice post-processing effects.
   // TODO - Implement some type of post-processing effect here.
-  fragColor = vec4(color, 1.0);
+  vec3 red = vec3(color.y, color.x, color.z);
+  
+  fragColor = vec4(red, 1.0);
 }
