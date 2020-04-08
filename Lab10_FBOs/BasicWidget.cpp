@@ -215,6 +215,7 @@ void BasicWidget::paintGL()
 
   // Create an FBO the same size as our window.
   // TODO:  This is wasteful -- do we really NEED to create a new FBO every frame?!
+  //I tried to just declare it once, as a member function, then assign it in an initializer, but it didn't seem to work. Spent quite a bit of time on it, too...
   QOpenGLFramebufferObject fbo(size(), QOpenGLFramebufferObject::CombinedDepthStencil);
 
   // Bind our FBO.
@@ -234,7 +235,6 @@ void BasicWidget::paintGL()
   // When we draw, we are now rendering into our FBO
   for (auto renderable : renderables_) {
       renderable->update(msSinceRestart);
-      // TODO:  Understand that the camera is now governing the view and projection matrices
       renderable->draw(world_, camera_.getViewMatrix(), camera_.getProjectionMatrix());
   }
 
