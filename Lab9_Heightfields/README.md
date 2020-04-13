@@ -7,12 +7,15 @@
 ## Modify this section
 
 - How many hours did it take you to complete this lab?
+	>Less than 1.
 - Did you collaborate with any other students/TAs/Professors?
+	>No.
 - Did you use any external resources? (Cite them below)
-  - tbd
-  - tbd
+	>I made heavy use of Lab 10, which I actually completed first.
 - (Optional) What was your favorite part of the lab?
+	>How easy it was.
 - (Optional) How would you improve the lab?
+	>I would not.
 
 ## Logistics
 
