@@ -6,12 +6,13 @@
 *TODO*: Please edit the following information in your assignment
 
 * Name and partners name(At most 1 partner for this Assignment): 
-* How many hours did it take you to complete this Assignment? 
+	>Nicolas Karayakaylar
+* How many hours did it take you to complete this Assignment?
+	>I failed to complete it.
 * Did you collaborate or share ideas with any other students/TAs/Professors? 
+	>No. Only Piazza. I was meant to have a partner, but he hasn't contributed for weeks.
 * Did you use any external resources? 
-  * (tbd if any)
-  * (tbd if any)
-  * (tbd if any)
+	>Nope.
 * (Optional) What was the most interesting part of the assignment? How would you improve this assignment?
   
 ## Description
