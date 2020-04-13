@@ -1,0 +1,3 @@
+C:/Users/sable/Desktop/School Stuff/Junior Year/ComputerGraphics/ComputerGraphics/Assignment5_NormalMappedModel/build/CMakeFiles/App.dir
+C:/Users/sable/Desktop/School Stuff/Junior Year/ComputerGraphics/ComputerGraphics/Assignment5_NormalMappedModel/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/sable/Desktop/School Stuff/Junior Year/ComputerGraphics/ComputerGraphics/Assignment5_NormalMappedModel/build/CMakeFiles/ZERO_CHECK.dir
