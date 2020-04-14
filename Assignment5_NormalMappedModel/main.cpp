@@ -9,7 +9,7 @@
 
 int main(int argc, char** argv) {
 	if (argc != 2) {//If no argument is provided, or too many are, then it defaults to displaying the house model, largely for testing purposes.
-		argv[1] = "../../objects/windmill/windmill.obj";
+		argv[1] = "../../../objects/windmill/windmill.obj";
 	}
 	QApplication a(argc, argv);
 	QString appDir = a.applicationDirPath();
