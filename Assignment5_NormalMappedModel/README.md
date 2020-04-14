@@ -9,9 +9,9 @@
 	>Nicolas Karayakaylar
   >Ben Hackney
 * How many hours did it take you to complete this Assignment?
-	>I failed to complete it.
+	>4 hrs
 * Did you collaborate or share ideas with any other students/TAs/Professors?
-	>No. Only Piazza. I was meant to have a partner, but he hasn't contributed for weeks.
+	>No. Only Piazza. Also used the vertex and the fragment shader from 
 * Did you use any external resources?
 	>Nope.
 * (Optional) What was the most interesting part of the assignment? How would you improve this assignment?
