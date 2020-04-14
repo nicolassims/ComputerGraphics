@@ -1,11 +1,25 @@
+
 #include "Application.h"
+
 #include "BasicWidget.h"
 
-Application::Application(QWidget* parent, std::string objFilename) : QMainWindow(parent) {
-	buildGui(objFilename);
+Application::Application(QWidget* parent, std::string input) : QMainWindow(parent), input_(input)
+{
+  buildGui();
 }
 
-void Application::buildGui(std::string objFilename) {
-	BasicWidget* widget = new BasicWidget(this, objFilename);//basic widget.
-	setCentralWidget(widget);
+Application::~Application()
+{}
+
+
+void Application::buildGui()
+{
+  // A simple menubar.
+  QMenuBar* menu = menuBar();
+  QMenu* file = menu->addMenu("File");
+  QAction* exit = file->addAction("Quit", [this]() {close();});
+
+  // Our basic widget.
+  BasicWidget* widget = new BasicWidget(this, input_);
+  setCentralWidget(widget);
 }

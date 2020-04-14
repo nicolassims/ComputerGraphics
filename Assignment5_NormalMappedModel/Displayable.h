@@ -4,21 +4,48 @@
 #include <QtGui>
 #include <QtOpenGL>
 
+#include "TranslatedObj.h"
+
 class Displayable {
 protected:
-	QMatrix4x4 modelMatrix_;//The matrix used to keep track of the displayable's model
-	QOpenGLShaderProgram shader_;//the displayable's shader
-	QOpenGLTexture texture_;//the displayable's texture
-	QOpenGLBuffer vbo_;//vertex buffer
-	QOpenGLBuffer ibo_;//index  buffer
-	QOpenGLVertexArrayObject vao_;//used during the draw call
-	unsigned int idxCount;//Do you _really_ need documentation for this one?
-	int vertexSize_;//position + texCoord
-	void createShaders();//create shader
+    // Each renderable has its own model matrix
+    QMatrix4x4 modelMatrix_;
+    // For now, we have only one shader per object
+    QOpenGLShaderProgram shader_;
+    // For now, we have only two textures per object
+    QOpenGLTexture diffuseMap_;
+    QOpenGLTexture normalMap_;
+    // For now, we have a single unified buffer per object
+    QOpenGLBuffer vbo_;
+    // Make sure we have an index buffer.
+    QOpenGLBuffer ibo_;
+    // We have a single draw call, so a single vao
+    QOpenGLVertexArrayObject vao_;
+    // Keep track of how many triangles we actually have to draw in our ibo
+    unsigned int numTris_;
+
+    // Define our axis of rotation for animation
+    QVector3D rotationAxis_;
+    float rotationSpeed_;
+    float rotationAngle_;
+
+    // Create our shader and fix it up
+    void createShaders();
 
 public:
-	Displayable();
-	virtual ~Displayable();
-	virtual void init(const QVector<QVector3D>& positions, const QVector<QVector2D>& texCoords, const QVector<unsigned int>& indexes, const QString& textureFile);
-	virtual void draw(const QMatrix4x4& view, const QMatrix4x4& projection);
+    Displayable();
+    virtual ~Displayable();
+
+    virtual void init(TranslatedObj* object);
+    virtual void update(const qint64 msSinceLastFrame);
+    virtual void draw(const QMatrix4x4& view, const QMatrix4x4& projection);
+
+    void setModelMatrix(const QMatrix4x4& transform);
+    void setRotationAxis(const QVector3D& axis);
+    void setRotationSpeed(float speed);
+
+    static Displayable* createFromFile(const std::string& filePath);
+
+private:
+
 };

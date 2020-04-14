@@ -17,11 +17,14 @@ include_directories(
 )
 
 set(srcs
-	Displayable.cpp
-	FileReader.cpp
-	Application.cpp
-	BasicWidget.cpp
-	main.cpp
+  main.cpp
+  Application.cpp
+  BasicWidget.cpp
+  FileLoader.cpp
+  ObjLoader.cpp
+  Displayable.cpp
+  MtlLoader.cpp
+  TranslatedObj.cpp
 )
 
 add_executable(App
