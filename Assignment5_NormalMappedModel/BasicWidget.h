@@ -3,46 +3,29 @@
 #include <QtGui>
 #include <QtWidgets>
 #include <QtOpenGL>
-
 #include "Displayable.h"
 
-/**
- * This is just a basic OpenGL widget that will allow a change of background color.
- */
-class BasicWidget : public QOpenGLWidget, protected QOpenGLFunctions
-{
-	Q_OBJECT
-
+class BasicWidget : public QOpenGLWidget, protected QOpenGLFunctions {//Basic OpenGL Widget. Gives access to OpenGL functions.
 private:
+	bool fillmode = true;
+	std::string objFilename_;
 	QMatrix4x4 model_;
 	QMatrix4x4 view_;
 	QMatrix4x4 projection_;
-
 	QElapsedTimer frameTimer_;
-
-	QVector<Displayable*> renderables_;
-
-	QOpenGLDebugLogger logger_;
-
-	bool wireframeMode_;
-	unsigned int modelSelectedIndex_;
-
-	std::string input_;
-	bool customInput_ = false;
+	QVector<Displayable*> displayables_;
 
 protected:
-	// Required interaction overrides
-	void keyReleaseEvent(QKeyEvent* keyEvent) override;
+	QOpenGLShaderProgram shaderProgram_;
 
-	// Required overrides form QOpenGLWidget
-	void initializeGL() override;
+	void keyReleaseEvent(QKeyEvent* keyEvent) override;//interaction overrides
+	void initializeGL() override;//QOpenGLWidget overrides 
 	void resizeGL(int w, int h) override;
 	void paintGL() override;
 
 public:
-	BasicWidget(QWidget* parent = nullptr, std::string input = "");
+	BasicWidget(QWidget* parent = nullptr, std::string objFilename = "");
 	virtual ~BasicWidget();
 
-	// Make sure we have some size that makes sense.
-	QSize sizeHint() const override { return QSize(800, 600); }
+	QSize sizeHint() const { return QSize(1280, 920); }
 };
