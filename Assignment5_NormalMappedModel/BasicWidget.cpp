@@ -1,85 +1,127 @@
+#include <iostream>
+
 #include "BasicWidget.h"
-#include "FileReader.h"
 
 //////////////////////////////////////////////////////////////////////
 // Publics
-BasicWidget::BasicWidget(QWidget* parent, std::string objFilename) : QOpenGLWidget(parent) {
-	objFilename_ = objFilename;
-	setFocusPolicy(Qt::StrongFocus);
+BasicWidget::BasicWidget(QWidget* parent, std::string input) : QOpenGLWidget(parent), input_(input)
+{
+  setFocusPolicy(Qt::StrongFocus);
 }
 
-BasicWidget::~BasicWidget() {
-	for (auto renderable : displayables_) {
-		delete renderable;
-	}
-	displayables_.clear();
+BasicWidget::~BasicWidget()
+{
+  makeCurrent();
+  for (Renderable* renderable : renderables_) {
+    delete renderable;
+  }
+  renderables_.clear();
 }
+
+
+//////////////////////////////////////////////////////////////////////
+// Privates
 
 ///////////////////////////////////////////////////////////////////////
 // Protected
 void BasicWidget::keyReleaseEvent(QKeyEvent* keyEvent)
 {
-	// Handle key events here.
-	if (keyEvent->key() == Qt::Key_Q) {
-		qDebug() << "q pressed. Exiting application";
-		exit(0);
-		update();
-	} else if (keyEvent->key() == Qt::Key_W) {
-		qDebug() << "w pressed. Toggling wireframe mode.";
-		fillmode = !fillmode;
-		update();
-	} else {
-		qDebug() << "You Pressed an unsupported Key!";
-	}
-}
-void BasicWidget::initializeGL() {
-	makeCurrent();
-	initializeOpenGLFunctions();
+  switch (keyEvent->key()) {
+  case Qt::Key_Q:
+    qDebug() << "Q key pressed.";
+    QCoreApplication::quit();
+    break;
+  case Qt::Key_W:
+    qDebug() << "W key pressed.";
+    wireframeMode_ = !wireframeMode_;
+    break;
+  case Qt::Key_1:
+    qDebug() << "1 key pressed.";
+    modelSelectedIndex_ = 0;
+    update();
+    break;
+  case Qt::Key_2:
+    qDebug() << "2 key pressed.";
+    modelSelectedIndex_ = 1;
+    update();
+    break;
+  case Qt::Key_3:
+    qDebug() << "3 key pressed.";
+    modelSelectedIndex_ = 2;
+    update();
+    break;
+  case Qt::Key_4:
+    qDebug() << "4 key pressed.";
+    modelSelectedIndex_ = 3;
+    update();
+    break;
+  case Qt::Key_5:
+    qDebug() << "5 key pressed.";
+    if (customInput_) {
+      modelSelectedIndex_ = 4;
+    }
+    update();
+    break;
+  default:
+    qDebug() << "You pressed an unsupported key.";
 
-	FileReader obj = FileReader(objFilename_);
-	QString texFile = QString::fromStdString(obj.formattedName);
-	QVector<QVector3D> pos;
-	QVector<QVector2D> texCoord;
-	QVector<unsigned int> idx;
-
-	for (int i = 0; i < obj.combinedPositionData.size(); i += 3) {
-		pos << QVector3D(obj.combinedPositionData[i], obj.combinedPositionData[i + 1], obj.combinedPositionData[i + 2]);
-	}
-	for (int i = 0; i < obj.combinedTextureData.size(); i += 2) {
-		texCoord << QVector2D(obj.combinedTextureData[i], obj.combinedTextureData[i + 1]);
-	}
-	for (int i = 0; i < obj.combinedIndexes.size(); i++) {
-		idx << obj.combinedIndexes[i];
-	}
-
-	Displayable* ren1 = new Displayable();
-	ren1->init(pos, texCoord, idx, texFile);
-
-	displayables_.push_back(ren1);
-	glViewport(0, 0, width(), height());
-	frameTimer_.start();
-}
-
-void BasicWidget::resizeGL(int w, int h) {
-	glViewport(0, 0, w, h);
-	view_.setToIdentity();
-	view_.lookAt(QVector3D(5.0f, 0.0f, 2.0f), QVector3D(0.0f, 0.0f, 0.0f), QVector3D(0.0f, 1.0f, 0.0f));
-	projection_.setToIdentity();
-	projection_.perspective(70.f, (float)w / (float)h, 0.001, 1000.0);
-	glViewport(0, 0, w, h);
+  }
 }
 
-void BasicWidget::paintGL() {
-	qint64 msSinceRestart = frameTimer_.restart();
-	glEnable(GL_DEPTH_TEST);
-	glDisable(GL_CULL_FACE);
-	glPolygonMode(GL_FRONT_AND_BACK, fillmode ? GL_FILL : GL_LINE);
+void BasicWidget::initializeGL()
+{
+  makeCurrent();
+  initializeOpenGLFunctions();
 
-	glClearColor(1, 1, 1, 1);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  wireframeMode_ = false;
+  modelSelectedIndex_ = 0;
 
-	for (auto displayable : displayables_) {
-		displayable->draw(view_, projection_);
-	}
-	update();
+  if (input_ != "") {
+    customInput_ = true;
+    renderables_.push_back(Renderable::createFromFile(input_));
+  }
+  renderables_.push_back(Renderable::createFromFile("../../../objects/windmill/windmill.obj"));
+  QMatrix4x4 model;
+  model.scale(1.5);
+  renderables_.at(renderables_.size() - 1)->setModelMatrix(model);
+  renderables_.push_back(Renderable::createFromFile("../../../objects/house/house_obj.obj"));
+  renderables_.push_back(Renderable::createFromFile("../../../objects/windmill/windmill.obj"));
+  renderables_.push_back(Renderable::createFromFile("../../../objects/chapel/chapel_obj.obj"));
+
+  glViewport(0, 0, width(), height());
+  frameTimer_.start();
+}
+
+void BasicWidget::resizeGL(int w, int h)
+{
+  glViewport(0, 0, w, h);
+  view_.setToIdentity();
+  view_.lookAt(QVector3D(0.0f, 0.0f, 4.0f),
+      QVector3D(0.0f, 0.0f, 0.0f),
+      QVector3D(0.0f, 1.0f, 0.0f));
+  projection_.setToIdentity();
+  projection_.perspective(70.f, (float)w/(float)h, 0.001, 1000.0);
+  glViewport(0, 0, w, h);
+}
+
+void BasicWidget::paintGL()
+{
+  qint64 msSinceRestart = frameTimer_.restart();
+  glEnable(GL_DEPTH_TEST);
+  glDisable(GL_CULL_FACE);
+
+  glClearColor(0.f, 0.f, 0.f, 1.f);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glDepthFunc(GL_LESS);
+
+  if (wireframeMode_) {
+    glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+  } else {
+    glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+  }
+
+  renderables_.at(modelSelectedIndex_)->update(msSinceRestart);
+  renderables_.at(modelSelectedIndex_)->draw(view_, projection_);
+
+  update();
 }
