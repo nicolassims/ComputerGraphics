@@ -25,19 +25,19 @@ uniform mat4 view;                  // we need the view matrix for highlights
 uniform PointLight pointLights[1];  // Our lights
 
 // Import our normal data
-in vec3 myNormal;
+in vec3 norm;
 // Import our texture coordinates from vertex shader
-in vec2 v_texCoord;
+in vec2 texCoords;
 // Import the fragment position
-in vec3 FragPos;
+in vec3 fragPos;
 
 void main() {
 // Compute the normal direction
-  vec3 norm = normalize(myNormal);
+  vec3 norm = normalize(norm);
 
   // Store our final texture color
   vec3 diffuseColor;
-  diffuseColor = texture(tex, v_texCoord).rgb;
+  diffuseColor = texture(tex, texCoords).rgb;
 
   // (1) Compute ambient light
   vec3 ambient = pointLights[0].ambientIntensity * pointLights[0].color;
@@ -46,15 +46,15 @@ void main() {
   // From our lights position and the fragment, we can get
   // a vector indicating direction
   // Note it is always good to 'normalize' values.
-  vec3 lightDir = normalize(pointLights[0].position - FragPos);
+  vec3 lightDir = normalize(pointLights[0].position - fragPos);
   // Now we can compute the diffuse light impact
-  float diffImpact = max(dot(myNormal, lightDir), 0.0);
+  float diffImpact = max(dot(norm, lightDir), 0.0);
   vec3 diffuseLight = diffImpact * pointLights[0].color;
 
   // (3) Compute Specular lighting
   vec3 viewPos = vec3(0.0,0.0,0.0);
-  vec3 viewDir = normalize(viewPos - FragPos);
-  vec3 reflectDir = reflect(-lightDir, myNormal);
+  vec3 viewDir = normalize(viewPos - fragPos);
+  vec3 reflectDir = reflect(-lightDir, norm);
 
   float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
   vec3 specular = pointLights[0].specularIntensity * spec * pointLights[0].color;
