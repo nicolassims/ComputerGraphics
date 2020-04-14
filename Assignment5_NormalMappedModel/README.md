@@ -5,16 +5,17 @@
 
 *TODO*: Please edit the following information in your assignment
 
-* Name and partners name(At most 1 partner for this Assignment): 
+* Name and partners name(At most 1 partner for this Assignment):
 	>Nicolas Karayakaylar
+  >Ben Hackney
 * How many hours did it take you to complete this Assignment?
 	>I failed to complete it.
-* Did you collaborate or share ideas with any other students/TAs/Professors? 
+* Did you collaborate or share ideas with any other students/TAs/Professors?
 	>No. Only Piazza. I was meant to have a partner, but he hasn't contributed for weeks.
-* Did you use any external resources? 
+* Did you use any external resources?
 	>Nope.
 * (Optional) What was the most interesting part of the assignment? How would you improve this assignment?
-  
+
 ## Description
 
 The grand finale! err, at least for our .obj model loader. The final
@@ -42,7 +43,7 @@ real tangent space to light everything!
 Ideally, you are working from your previous assignment as your starter code. Here are my recommendations:
 
 * If you do not understand tangent space, go back and understand model and world space first.
-  * The idea again is that you can multiply through a 'tangent matrix' (TBN) to figure out how to properly light up fragments based on a normal map at any angle. 
+  * The idea again is that you can multiply through a 'tangent matrix' (TBN) to figure out how to properly light up fragments based on a normal map at any angle.
 
 * Read the slides and read the tutorial. Normal mapping is all about math. We are diving in a little deep, but I have done some of the setup in the code to assist you. [www.learnopengl.com](https://learnopengl.com/Advanced-Lighting/Normal-Mapping) also provides some good notes on normal mapping.
 * Read the code from slides/labs/etc and understand what is going on.
@@ -124,11 +125,11 @@ struct VertexData{
 	float s,t;		// s,t texture coordinates
 
 	VertexData(float _x, float _y, float _z,float _xn, float _yn, float _zn, float _s, float _t): x(_x),y(_y),z(_z),xn(_xn),yn(_yn),zn(_zn),s(_s),t(_t) { }
-	
+
 	// Tests if two VertexData are equal
 	bool operator== (const VertexData &rhs){
-		if( (x == rhs.x) && (y == rhs.y) && (z == rhs.z) 
-			 && (xn == rhs.xn) && (yn == rhs.yn) && (zn == rhs.zn) 
+		if( (x == rhs.x) && (y == rhs.y) && (z == rhs.z)
+			 && (xn == rhs.xn) && (yn == rhs.yn) && (zn == rhs.zn)
 			 && (s == rhs.s) && (t == rhs.t) ){
 			return true;
 		}
@@ -138,7 +139,7 @@ struct VertexData{
 
 ```
 
-More information on structs can be found here: 
+More information on structs can be found here:
 
 - [cplusplus - structures](http://www.cplusplus.com/doc/tutorial/structures/)
 - [learncpp - structs](https://www.learncpp.com/cpp-tutorial/47-structs/)
@@ -154,7 +155,7 @@ tested with the 'house' model for most of my iterations, so I
 recommend you do the same.
 
 The tasks for rendering in this assignment are the following:
-1. Make sure you can parse the .obj file format and associated material file. 
+1. Make sure you can parse the .obj file format and associated material file.
 	- read in the vertex (v), vertex texture (vt), vertex normal(vn), and face(f) information.
 2. The .obj file should be read in from the command line arguments
 	- e.g. `./lab "./object/chapel/chapel_obj.obj"`
@@ -190,7 +191,7 @@ Make sure your scene is being rendered in perspective. Make
 modifications to the vert.glsl as needed. This should be similar to
 what you have done in a previous lab.
 
-### More Assignment strategy 
+### More Assignment strategy
 
 My suggested strategy for this project is:
 
@@ -260,4 +261,4 @@ Links on the OBJ Model Format (From last assignment)
 * Q: Can I load my own models that I have made to show off?
   * A: Sure -- just make sure they are added to the repository (Including the texture)
 * Q: Why are my texture coordinates messed up? The geometry looks right?
-  * A: Try a different model first to confirm. Then you may have to flip the texture in a modeling program or within your .ppm loader depending on how the coordinates were assigned. 
+  * A: Try a different model first to confirm. Then you may have to flip the texture in a modeling program or within your .ppm loader depending on how the coordinates were assigned.
